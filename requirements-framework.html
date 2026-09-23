@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="空间 AI MVP 项目全流程图：从项目创建、需求访谈、效果图生成、版本迭代到归档、图片打标与导出。">
+  <title>空间 AI｜MVP 项目全流程图</title>
+  <style>
+    :root{--ink:#172033;--muted:#677289;--paper:#f3f6fb;--card:#fff;--line:#cfd7e6;--blue:#3157d5;--blue2:#eaf0ff;--violet:#7457d9;--violet2:#f0ecff;--green:#19865b;--green2:#e7f8f0;--amber:#b66b08;--amber2:#fff4dc;--red:#bd3f47;--red2:#ffedf0;--shadow:0 12px 40px rgba(34,46,78,.09)}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif}
+    button,input{font:inherit}.shell{max-width:1540px;margin:auto;padding:34px 28px 80px}.hero{background:linear-gradient(135deg,#18275a 0%,#3157d5 58%,#7557d9 100%);color:#fff;border-radius:28px;padding:36px 40px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:380px;height:380px;border:1px solid rgba(255,255,255,.18);border-radius:50%;right:-110px;top:-230px}.eyebrow{font-size:13px;letter-spacing:.16em;opacity:.75}.hero h1{margin:8px 0 10px;font-size:clamp(28px,4vw,48px);letter-spacing:-.03em}.hero p{margin:0;max-width:850px;line-height:1.75;opacity:.88}.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.pill{padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);font-size:13px}
+    .toolbar{position:sticky;top:12px;z-index:10;margin:18px 0;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border:1px solid #e1e6f0;padding:12px;border-radius:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;box-shadow:0 8px 28px rgba(41,55,91,.08)}.search{flex:1;min-width:240px;border:1px solid #d8deea;border-radius:12px;padding:11px 14px;outline:none}.search:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue2)}.btn{border:1px solid #d8deea;background:#fff;color:var(--ink);border-radius:11px;padding:10px 14px;cursor:pointer}.btn:hover{border-color:#9ca9c5;background:#f8faff}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.active{background:#18275a;color:#fff;border-color:#18275a}
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}.stat{background:#fff;border:1px solid #e2e7f0;border-radius:17px;padding:17px 20px}.stat b{display:block;font-size:24px;color:var(--blue)}.stat span{font-size:13px;color:var(--muted)}
+    .legend{display:flex;gap:18px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:13px;margin:20px 4px}.dot{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:6px}.flow{display:grid;grid-template-columns:repeat(6,minmax(190px,1fr));gap:18px;align-items:start}.stage{background:var(--card);border:1px solid #dde3ed;border-radius:22px;padding:16px;box-shadow:0 8px 22px rgba(34,46,78,.05);min-height:100%}.stage-head{min-height:82px;padding:5px 4px 13px;border-bottom:1px solid #e8ecf3;margin-bottom:14px}.stage-no{font-size:11px;letter-spacing:.13em;color:var(--blue);font-weight:700}.stage h2{font-size:18px;margin:6px 0 2px}.stage-sub{font-size:12px;color:var(--muted)}.node{position:relative;border:1px solid #dce2ed;background:#fff;border-radius:14px;padding:13px 13px;margin:0 0 24px;line-height:1.5;font-size:14px;transition:.2s}.node:not(:last-child):after{content:"↓";position:absolute;left:50%;bottom:-23px;transform:translateX(-50%);color:#8d99b1;font-weight:700}.node small{display:block;margin-top:5px;color:var(--muted);font-size:11px}.node.milestone{background:var(--blue2);border-color:#9db0f0;color:#1d3ca2;font-weight:700}.node.ai{background:var(--violet2);border-color:#c6b9f2}.node.decision{background:var(--amber2);border-color:#edca85}.node.archive{background:var(--green2);border-color:#96d5b7}.node.error{background:var(--red2);border-color:#ebb2b7}.node.hit{outline:4px solid rgba(255,195,55,.5);transform:translateY(-2px)}.branch{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px}.branch .node{margin-bottom:0;font-size:12px}.branch .node:after{display:none}.branch-label{grid-column:1/-1;text-align:center;color:var(--amber);font-size:11px;font-weight:700}.loop{border:1px dashed #aeb9ce;border-radius:13px;padding:10px;color:var(--muted);font-size:12px;margin:-10px 0 24px;text-align:center}
+    .v2{margin-top:24px;border:1px dashed #aeb8cb;background:#eef1f6;border-radius:22px;padding:22px}.v2 h2{margin:0 0 5px;font-size:18px}.v2 p{margin:0 0 16px;color:var(--muted);font-size:13px}.v2-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.future{background:#fff;border:1px dashed #aeb8cb;border-radius:12px;padding:13px;font-size:13px;color:#59657b}.foot{margin-top:22px;color:var(--muted);font-size:12px;text-align:center}.hidden{display:none!important}
+    /* Dark technology theme */
+    :root{--ink:#f4f7fb;--muted:#8893a8;--paper:#05070a;--card:#0b0e13;--line:#27303e;--blue:#77a7ff;--blue2:#101b31;--violet:#a994ff;--violet2:#1a1530;--green:#61d6ac;--green2:#10261f;--amber:#e7b35c;--amber2:#282011;--red:#ff7b85;--red2:#2b1318;--shadow:0 18px 60px rgba(0,0,0,.42)}
+    body{background-color:#05070a;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px),radial-gradient(circle at 12% 8%,rgba(64,115,220,.13),transparent 28%),radial-gradient(circle at 88% 4%,rgba(126,96,220,.1),transparent 25%);background-size:32px 32px,32px 32px,auto,auto}
+    .hero{background:linear-gradient(135deg,#080b11 0%,#111827 64%,#171525 100%);border:1px solid #293244;box-shadow:0 0 0 1px rgba(255,255,255,.02),0 24px 80px rgba(0,0,0,.55)}
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(120,165,255,.07),transparent);transform:translateX(-100%);animation:scan 8s ease-in-out infinite;pointer-events:none}.hero:after{border-color:rgba(132,169,255,.24);box-shadow:0 0 80px rgba(87,130,220,.11)}
+    @keyframes scan{0%,35%{transform:translateX(-100%)}75%,100%{transform:translateX(100%)}}
+    .eyebrow{color:#8fb4ff;opacity:1}.pill{background:rgba(255,255,255,.045);border-color:#343d4e;color:#d8dfeb}
+    .toolbar{background:rgba(8,11,16,.9);border-color:#232a36;box-shadow:0 14px 44px rgba(0,0,0,.42)}.search{background:#0d1118;border-color:#2b3443;color:#f4f7fb}.search::placeholder{color:#657187}.search:focus{border-color:#77a7ff;box-shadow:0 0 0 3px rgba(119,167,255,.13)}
+    .btn{background:#0e1218;border-color:#2b3443;color:#dfe5ef}.btn:hover{background:#151b25;border-color:#58667c}.btn.primary,.btn.active{background:#f4f7fb;border-color:#f4f7fb;color:#080a0d}.btn.primary:hover,.btn.active:hover{background:#dce4ef;border-color:#dce4ef}
+    .stat{background:rgba(11,14,19,.9);border-color:#242c38;box-shadow:inset 0 1px rgba(255,255,255,.025)}.stat b{color:#f4f7fb}.legend{color:#919caf}
+    .stage{background:linear-gradient(180deg,rgba(14,18,25,.96),rgba(8,11,15,.98));border-color:#242c38;box-shadow:0 18px 50px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.025)}.stage-head{border-bottom-color:#252d39}.stage-no{color:#82adff}.stage h2{color:#f8fafc}.stage-sub{color:#778399}
+    .node{background:#0d1118;border-color:#2b3443;color:#e8edf5;box-shadow:inset 0 1px rgba(255,255,255,.025)}.node small{color:#818da1}.node:not(:last-child):after{color:#556277}.node.milestone{background:linear-gradient(135deg,#111c32,#0e1626);border-color:#42639f;color:#dce8ff;box-shadow:0 0 22px rgba(73,119,210,.1)}.node.ai{background:linear-gradient(135deg,#1b1630,#141126);border-color:#594b88;color:#eee9ff}.node.decision{background:#211b10;border-color:#6d562c;color:#f3dcad}.node.archive{background:#0e211b;border-color:#2c7159;color:#c9f5e5}.node.error{background:#271318;border-color:#71343b;color:#ffd9dc}.node.hit{outline-color:rgba(255,220,100,.65);box-shadow:0 0 28px rgba(255,201,75,.18)}
+    .branch-label{color:#d9a956}.loop{border-color:#3b4658;background:rgba(255,255,255,.018);color:#8490a4}.v2{background:rgba(12,15,21,.82);border-color:#343e4f}.future{background:#0d1118;border-color:#3e4858;color:#8e99aa}.foot{color:#626e81}
+    @media(prefers-reduced-motion:reduce){.hero:before{animation:none}}
+    @media(max-width:1180px){.flow{grid-template-columns:repeat(3,1fr)}.v2-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:720px){.shell{padding:16px 12px 50px}.hero{padding:26px 22px;border-radius:20px}.flow{grid-template-columns:1fr}.summary{grid-template-columns:1fr 1fr}.v2-grid{grid-template-columns:1fr}.toolbar{top:6px}.stage{min-height:auto}}
+    @media print{body{background:#fff}.shell{max-width:none;padding:0}.hero{box-shadow:none;border-radius:0;-webkit-print-color-adjust:exact;print-color-adjust:exact}.toolbar{display:none}.summary{margin:12px 0}.flow{grid-template-columns:repeat(3,1fr);gap:9px}.stage{box-shadow:none;break-inside:avoid;padding:10px}.node{padding:9px;font-size:11px;margin-bottom:18px}.node:not(:last-child):after{bottom:-17px}.v2{break-inside:avoid}.foot{display:none}@page{size:A3 landscape;margin:10mm}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header class="hero">
+    <div class="eyebrow">SPACE AI · MVP DELIVERY MAP</div>
+    <h1>空间 AI 项目全流程图</h1>
+    <p>从项目创建、空间模型建立、AI 需求访谈和效果图生成，到多轮修改、材料整理、项目归档、图片打标与整包导出。主流程严格对应 V1 MVP，后续能力独立标记。</p>
+    <div class="meta"><span class="pill">版本：V1.0</span><span class="pill">范围：MVP / P0</span><span class="pill">终点：完整归档与 ZIP 导出</span></div>
+  </header>
+
+  <nav class="toolbar" aria-label="流程图工具栏">
+    <input id="search" class="search" type="search" placeholder="搜索流程节点，例如：打标、SU、材料表…" aria-label="搜索流程节点">
+    <button class="btn active" data-filter="all">全部</button>
+    <button class="btn" data-filter="ai">只看 AI</button>
+    <button class="btn" data-filter="decision">只看判断</button>
+    <button class="btn" id="toggleV2">隐藏 V2</button>
+    <button class="btn" id="print">打印 / 存为 PDF</button>
+    <button class="btn primary" id="download">下载本网页</button>
+  </nav>
+
+  <section class="summary" aria-label="流程摘要">
+    <div class="stat"><b>6</b><span>个 MVP 阶段</span></div><div class="stat"><b>2</b><span>种模型导入入口</span></div><div class="stat"><b>3</b><span>类 AI 图像任务</span></div><div class="stat"><b>1</b><span>套完整项目交付包</span></div>
+  </section>
+  <div class="legend"><span><i class="dot" style="background:#3157d5"></i>关键里程碑</span><span><i class="dot" style="background:#7457d9"></i>AI 能力</span><span><i class="dot" style="background:#d79a32"></i>判断 / 人工确认</span><span><i class="dot" style="background:#27a873"></i>归档 / 交付</span><span><i class="dot" style="background:#d95b63"></i>异常处理</span></div>
+
+  <section class="flow" id="flow">
+    <article class="stage"><div class="stage-head"><span class="stage-no">STAGE 01</span><h2>空间模型建立</h2><div class="stage-sub">项目创建与结构冻结</div></div>
+      <div class="node milestone">设计师登录并新建项目</div><div class="node archive">自动生成虚拟项目文件夹体系<small>目录与公司本地项目结构一致</small></div><div class="node">录入项目基础信息</div><div class="node decision">选择空间数据入口</div>
+      <div class="branch"><div class="branch-label">两种 MVP 入口</div><div class="node">上传户型图<small>生成简易空间模型</small></div><div class="node">上传 SU 模型<small>解析并展示模型</small></div></div>
+      <div class="node decision">设计师校验结构与比例</div><div class="loop">不正确 → 重新导入或人工调整</div><div class="node milestone">锁定墙体结构与比例</div>
+    </article>
+    <article class="stage"><div class="stage-head"><span class="stage-no">STAGE 02</span><h2>AI 需求收集</h2><div class="stage-sub">访谈、结构化与需求冻结</div></div>
+      <div class="node ai">AI 对话访谈<small>空间、风格、功能、材料、预算偏好</small></div><div class="node ai">生成结构化项目需求文档</div><div class="node archive">归档至重要技术及商务文件</div><div class="node decision">设计师确认需求</div><div class="loop">需要补充 → 返回 AI 对话访谈</div><div class="node milestone">冻结 V1 项目需求</div>
+    </article>
+    <article class="stage"><div class="stage-head"><span class="stage-no">STAGE 03</span><h2>AI 效果图生成</h2><div class="stage-sub">参考图、异步生成与首轮版本</div></div>
+      <div class="node">上传意向图或风格参考图</div><div class="node decision">选择 AI 图像任务</div><div class="branch"><div class="node ai">软装效果图</div><div class="node ai">风格迁移</div><div class="node ai">局部重绘</div><div class="node ai">锁定空间基底</div></div><div class="node ai">异步任务队列执行</div><div class="node decision">任务是否成功</div><div class="node error">超时或失败：友好提示并支持重试</div><div class="node archive">保存效果图及生成参数</div><div class="node milestone">建立首轮汇报版本</div>
+    </article>
+    <article class="stage"><div class="stage-head"><span class="stage-no">STAGE 04</span><h2>反馈与版本迭代</h2><div class="stage-sub">修改意图、版本归档与方案冻结</div></div>
+      <div class="node milestone">首轮方案汇报</div><div class="node">记录客户反馈和沟通内容</div><div class="node ai">AI 辅助识别修改意图</div><div class="node decision">设计师审核修改要求</div><div class="branch"><div class="node">整体风格调整</div><div class="node">局部修改</div></div><div class="node archive">生成并归档 V1 / V2 / V3…<small>含效果图、对话和修改日志</small></div><div class="node decision">方案是否确认</div><div class="loop">未确认 → 返回客户反馈与修改</div><div class="node milestone">冻结最终效果图版本</div>
+    </article>
+    <article class="stage"><div class="stage-head"><span class="stage-no">STAGE 05</span><h2>材料与项目交付</h2><div class="stage-sub">简易材料表与项目关闭</div></div>
+      <div class="node ai">AI 生成简易材料表</div><div class="node decision">设计师人工复核材料信息</div><div class="node archive">保存最终材料表</div><div class="node decision">是否结束项目</div><div class="loop">否 → 返回反馈与版本迭代</div><div class="node milestone">执行项目完整归档</div>
+    </article>
+    <article class="stage"><div class="stage-head"><span class="stage-no">STAGE 06</span><h2>图片打标与导出</h2><div class="stage-sub">项目结束后的智能归档</div></div>
+      <div class="node ai">触发 AI 图片批量打标</div><div class="node ai">识别空间、风格、材质、色彩及版本</div><div class="node decision">打标任务是否成功</div><div class="node error">失败：记录原因并支持重试</div><div class="node archive">标签写入图片元数据</div><div class="node decision">设计师查看并复核标签</div><div class="node archive">生成完整项目 ZIP 压缩包</div><div class="node decision">校验目录与公司本地结构一致</div><div class="node milestone">下载项目交付包 · 项目结束</div>
+    </article>
+  </section>
+
+  <section class="v2" id="v2"><h2>V2 后续能力｜不纳入当前 MVP</h2><p>以下能力保留为后续版本规划，不进入当前 P0 验收范围。</p><div class="v2-grid"><div class="future">AI 自动空间布局 A / B / C</div><div class="future">墙、顶、地逐部位引导确认</div><div class="future">家具、软装与灯具完整模型联动</div><div class="future">工程数量、损耗与完整预算</div><div class="future">完整 CAD 与施工图输出</div><div class="future">案例知识库反哺后续项目</div></div></section>
+  <div class="foot">空间 AI · MVP 项目流程｜本文件可离线打开、打印、转发与再次下载</div>
+</main>
+<script>
+  const nodes=[...document.querySelectorAll('.node')], buttons=[...document.querySelectorAll('[data-filter]')], v2=document.getElementById('v2');
+  document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();nodes.forEach(n=>n.classList.toggle('hit',q&&n.textContent.toLowerCase().includes(q)));const hit=document.querySelector('.node.hit');if(hit&&q)hit.scrollIntoView({behavior:'smooth',block:'center'});});
+  buttons.forEach(b=>b.addEventListener('click',()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');const f=b.dataset.filter;nodes.forEach(n=>n.classList.toggle('hidden',f!=='all'&&!n.classList.contains(f)));}));
+  document.getElementById('toggleV2').addEventListener('click',e=>{v2.classList.toggle('hidden');e.target.textContent=v2.classList.contains('hidden')?'显示 V2':'隐藏 V2';});
+  document.getElementById('print').addEventListener('click',()=>window.print());
+  document.getElementById('download').addEventListener('click',()=>{const html='<!doctype html>\n'+document.documentElement.outerHTML;const blob=new Blob([html],{type:'text/html;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='空间AI项目全流程图.html';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);});
+</script>
+</body>
+</html>

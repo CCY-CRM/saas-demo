@@ -4,7 +4,8 @@ A static multi-page demo of an AI-assisted interior design workflow, covering pr
 
 ## Online demo
 
-https://ccy-crm.github.io/saas-demo/
+- Platform demo: https://ccy-crm.github.io/saas-demo/
+- Requirements framework: https://ccy-crm.github.io/saas-demo/requirements-framework.html
 
 ## Local preview
 
