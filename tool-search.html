@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>案例检索 · 工具箱</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="css/common.css">
+<style>
+  .tool-header { background:var(--card); border-bottom:1px solid var(--line); padding:16px 24px; display:flex; align-items:center; gap:16px; }
+  .back-btn { display:flex; align-items:center; gap:6px; color:var(--ink-soft); font-size:13px; cursor:pointer; text-decoration:none; }
+  .back-btn:hover { color:var(--accent); }
+  .tool-title { font-size:18px; font-weight:700; }
+  .search-bar { background:var(--card); border-bottom:1px solid var(--line); padding:16px 24px; display:flex; gap:12px; align-items:center; }
+  .search-input { flex:1; position:relative; }
+  .search-input input { width:100%; padding:10px 16px 10px 40px; border:1px solid var(--line); border-radius:8px; font-size:14px; background:var(--bg); }
+  .search-input .icon { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--muted); }
+  .filter-chips { display:flex; gap:8px; flex-wrap:wrap; padding:12px 24px; background:var(--card); border-bottom:1px solid var(--line); }
+  .chip { padding:6px 14px; border:1px solid var(--line); border-radius:20px; font-size:12px; cursor:pointer; transition:all 0.2s; background:var(--bg); }
+  .chip:hover { border-color:var(--accent); }
+  .chip.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .case-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; padding:24px; max-width:1200px; margin:0 auto; }
+  .case-card { background:var(--card); border-radius:12px; overflow:hidden; cursor:pointer; transition:all 0.2s; border:1px solid var(--line); }
+  .case-card:hover { box-shadow:var(--shadow-md); transform:translateY(-3px); }
+  .case-cover { height:160px; display:flex; align-items:center; justify-content:center; font-size:40px; position:relative; }
+  .case-badge { position:absolute; top:8px; left:8px; padding:3px 8px; border-radius:4px; font-size:10px; font-weight:600; color:#fff; }
+  .case-body { padding:14px; }
+  .case-name { font-size:14px; font-weight:600; margin-bottom:6px; }
+  .case-meta { font-size:11px; color:var(--muted); display:flex; gap:8px; flex-wrap:wrap; }
+  .case-stats { display:flex; gap:12px; margin-top:10px; padding-top:10px; border-top:1px solid var(--line-soft); }
+  .case-stat { font-size:11px; color:var(--muted); }
+  .case-stat strong { color:var(--ink); font-weight:600; }
+</style>
+</head>
+<body>
+<div class="tool-header">
+  <a href="knowledge.html" class="back-btn">← 返回工具箱</a>
+  <div class="tool-title">🔍 案例检索</div>
+  <span class="tag tag-warning">灵感参考</span>
+  <span style="flex:1;"></span>
+  <span class="text-xs text-muted">共 156 个案例</span>
+</div>
+<div class="search-bar">
+  <div class="search-input"><span class="icon">⌕</span><input type="text" placeholder="搜索案例名称、风格、户型..." value="现代简约 三室两厅"></div>
+  <button class="btn btn-primary btn-sm">搜索</button>
+</div>
+<div class="filter-chips">
+  <div class="chip active">全部风格</div>
+  <div class="chip">现代简约</div>
+  <div class="chip">北欧风</div>
+  <div class="chip">日式原木</div>
+  <div class="chip">新中式</div>
+  <div class="chip">轻奢风</div>
+  <div class="chip">工业风</div>
+  <div class="chip">法式复古</div>
+  <div class="chip" style="margin-left:auto;">面积：全部</div>
+  <div class="chip">预算：全部</div>
+  <div class="chip">排序：最新</div>
+</div>
+<div class="case-grid">
+  <div class="case-card">
+    <div class="case-cover" style="background:linear-gradient(135deg,#F5EDE2,#E8D9C4);">🛋️<span class="case-badge" style="background:var(--accent);">精选</span></div>
+    <div class="case-body"><div class="case-name">静安府 · 暖木白现代简约</div><div class="case-meta"><span>120㎡</span><span>三室两厅</span><span>现代简约</span></div><div class="case-stats"><div class="case-stat">预算 <strong>¥24万</strong></div><div class="case-stat">浏览 <strong>1.2k</strong></div><div class="case-stat">收藏 <strong>86</strong></div></div></div>
+  </div>
+  <div class="case-card">
+    <div class="case-cover" style="background:linear-gradient(135deg,#E8F0ED,#D4E5DD);">🌿</div>
+    <div class="case-body"><div class="case-name">徐汇滨江 · 日式原木风</div><div class="case-meta"><span>89㎡</span><span>两室一厅</span><span>日式原木</span></div><div class="case-stats"><div class="case-stat">预算 <strong>¥18万</strong></div><div class="case-stat">浏览 <strong>986</strong></div><div class="case-stat">收藏 <strong>72</strong></div></div></div>
+  </div>
+  <div class="case-card">
+    <div class="case-cover" style="background:linear-gradient(135deg,#EBF1F8,#D4E2F0);">🏛️</div>
+    <div class="case-body"><div class="case-name">浦东世纪公园 · 轻奢大平层</div><div class="case-meta"><span>200㎡</span><span>四室两厅</span><span>轻奢风</span></div><div class="case-stats"><div class="case-stat">预算 <strong>¥68万</strong></div><div class="case-stat">浏览 <strong>2.1k</strong></div><div class="case-stat">收藏 <strong>156</strong></div></div></div>
+  </div>
+  <div class="case-card">
+    <div class="case-cover" style="background:linear-gradient(135deg,#FBF3E4,#F0E0C0);">🏮</div>
+    <div class="case-body"><div class="case-name">长宁中山公园 · 新中式</div><div class="case-meta"><span>150㎡</span><span>三室两厅</span><span>新中式</span></div><div class="case-stats"><div class="case-stat">预算 <strong>¥42万</strong></div><div class="case-stat">浏览 <strong>1.5k</strong></div><div class="case-stat">收藏 <strong>98</strong></div></div></div>
+  </div>
+  <div class="case-card">
+    <div class="case-cover" style="background:linear-gradient(135deg,#EDEBE5,#D9D6CC);">🏭</div>
+    <div class="case-body"><div class="case-name">闵行古美 · 工业风LOFT</div><div class="case-meta"><span>75㎡</span><span>LOFT</span><span>工业风</span></div><div class="case-stats"><div class="case-stat">预算 <strong>¥15万</strong></div><div class="case-stat">浏览 <strong>876</strong></div><div class="case-stat">收藏 <strong>64</strong></div></div></div>
+  </div>
+  <div class="case-card">
+    <div class="case-cover" style="background:linear-gradient(135deg,#F5EDE2,#E8D9C4);">🎨</div>
+    <div class="case-body"><div class="case-name">静安寺 · 法式复古公寓</div><div class="case-meta"><span>95㎡</span><span>两室两厅</span><span>法式复古</span></div><div class="case-stats"><div class="case-stat">预算 <strong>¥32万</strong></div><div class="case-stat">浏览 <strong>1.8k</strong></div><div class="case-stat">收藏 <strong>134</strong></div></div></div>
+  </div>
+  <div class="case-card">
+    <div class="case-cover" style="background:linear-gradient(135deg,#E8F0ED,#D4E5DD);">❄️</div>
+    <div class="case-body"><div class="case-name">虹口北外滩 · 极简白</div><div class="case-meta"><span>110㎡</span><span>三室两厅</span><span>现代简约</span></div><div class="case-stats"><div class="case-stat">预算 <strong>¥28万</strong></div><div class="case-stat">浏览 <strong>1.1k</strong></div><div class="case-stat">收藏 <strong>78</strong></div></div></div>
+  </div>
+  <div class="case-card">
+    <div class="case-cover" style="background:linear-gradient(135deg,#FBF3E4,#F0E0C0);">🌅</div>
+    <div class="case-body"><div class="case-name">杨浦滨江 · 北欧暖阳</div><div class="case-meta"><span>85㎡</span><span>两室一厅</span><span>北欧风</span></div><div class="case-stats"><div class="case-stat">预算 <strong>¥16万</strong></div><div class="case-stat">浏览 <strong>765</strong></div><div class="case-stat">收藏 <strong>52</strong></div></div></div>
+  </div>
+  <div class="case-card">
+    <div class="case-cover" style="background:linear-gradient(135deg,#EBF1F8,#D4E2F0);">🏠</div>
+    <div class="case-body"><div class="case-name">普陀真如 · 美式乡村别墅</div><div class="case-meta"><span>280㎡</span><span>别墅</span><span>美式乡村</span></div><div class="case-stats"><div class="case-stat">预算 <strong>¥85万</strong></div><div class="case-stat">浏览 <strong>2.5k</strong></div><div class="case-stat">收藏 <strong>189</strong></div></div></div>
+  </div>
+</div>
+<div class="text-center pb-lg"><button class="btn btn-secondary">加载更多</button></div>
+</body>
+</html>

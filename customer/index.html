@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的装修方案 · 静安府</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="../css/common.css">
+<style>
+  body { background:var(--bg); }
+  .customer-header { background:var(--card); border-bottom:1px solid var(--line); padding:16px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .customer-brand { font-family:'Noto Serif SC',serif; font-size:16px; font-weight:700; color:var(--accent); }
+  .customer-tabs { display:flex; gap:0; background:var(--card); border-bottom:1px solid var(--line); padding:0 24px; overflow-x:auto; }
+  .customer-tab { padding:14px 20px; font-size:14px; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; color:var(--muted); white-space:nowrap; font-weight:500; }
+  .customer-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+  .customer-tab .badge { display:inline-block; background:var(--freeze); color:#fff; font-size:10px; padding:1px 6px; border-radius:10px; margin-left:6px; }
+  .customer-content { max-width:900px; margin:0 auto; padding:24px; }
+  .progress-card { background:var(--card); border-radius:12px; padding:24px; margin-bottom:20px; box-shadow:var(--shadow-sm); }
+  .progress-steps { display:flex; justify-content:space-between; margin-top:20px; position:relative; }
+  .progress-steps::before { content:''; position:absolute; top:16px; left:5%; right:5%; height:3px; background:var(--line); z-index:0; }
+  .progress-step { display:flex; flex-direction:column; align-items:center; gap:8px; position:relative; z-index:1; flex:1; }
+  .progress-dot { width:32px; height:32px; border-radius:50%; background:var(--line-soft); border:3px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:var(--muted); }
+  .progress-step.done .progress-dot { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .progress-step.active .progress-dot { background:#fff; border-color:var(--accent); color:var(--accent); box-shadow:0 0 0 4px var(--accent-light); }
+  .progress-label { font-size:11px; color:var(--muted); text-align:center; }
+  .progress-step.active .progress-label { color:var(--accent); font-weight:600; }
+  .proposal-card { background:var(--card); border-radius:12px; overflow:hidden; margin-bottom:20px; box-shadow:var(--shadow-sm); }
+  .proposal-cover { height:240px; display:flex; align-items:center; justify-content:center; font-size:64px; position:relative; }
+  .proposal-body { padding:20px; }
+  .feedback-area { background:var(--card); border-radius:12px; padding:24px; margin-bottom:20px; }
+  .confirm-card { background:var(--card); border-radius:12px; padding:32px; text-align:center; margin-bottom:20px; }
+  .signature-box { width:200px; height:80px; border:2px dashed var(--line); border-radius:8px; margin:20px auto; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--muted); font-size:13px; }
+  .delivery-item { display:flex; align-items:center; gap:12px; padding:14px; background:var(--card); border-radius:8px; margin-bottom:10px; }
+  .delivery-icon { width:40px; height:40px; border-radius:8px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+</style>
+</head>
+<body>
+<div class="customer-header">
+  <div class="customer-brand">XX 设计工作室</div>
+  <div class="flex items-center gap-sm">
+    <span class="text-sm text-muted">王先生</span>
+    <div class="avatar" style="width:32px;height:32px;font-size:12px;background:var(--bronze);">王</div>
+  </div>
+</div>
+<div class="customer-tabs">
+  <div class="customer-tab active" onclick="switchTab(this,'tab-progress')">📊 项目进度</div>
+  <div class="customer-tab" onclick="switchTab(this,'tab-proposal')">🎨 方案展示</div>
+  <div class="customer-tab" onclick="switchTab(this,'tab-feedback')">💬 提交反馈<span class="badge">2</span></div>
+  <div class="customer-tab" onclick="switchTab(this,'tab-confirm')">✅ 方案确认</div>
+  <div class="customer-tab" onclick="switchTab(this,'tab-delivery')">📦 交付物</div>
+</div>
+<div class="customer-content">
+
+  <!-- 进度 -->
+  <div id="tab-progress">
+    <div class="progress-card">
+      <h2 style="font-size:20px;font-weight:700;margin-bottom:4px;">静安府 · 120㎡ 现代简约</h2>
+      <p class="text-sm text-muted mb-md">项目负责人：陈设计 · 预计完成：2026年9月30日</p>
+      <div style="padding:16px;background:var(--accent-light);border-radius:8px;margin-bottom:8px;">
+        <div class="flex items-center justify-between mb-sm"><span class="text-sm font-semibold" style="color:var(--accent);">当前阶段：渲染迭代</span><span class="text-sm" style="color:var(--accent);">75%</span></div>
+        <div class="progress"><div class="progress-bar" style="width:75%;"></div></div>
+      </div>
+      <div class="progress-steps">
+        <div class="progress-step done"><div class="progress-dot">✓</div><div class="progress-label">建模</div></div>
+        <div class="progress-step done"><div class="progress-dot">✓</div><div class="progress-label">需求</div></div>
+        <div class="progress-step done"><div class="progress-dot">✓</div><div class="progress-label">布局</div></div>
+        <div class="progress-step done"><div class="progress-dot">✓</div><div class="progress-label">风格</div></div>
+        <div class="progress-step active"><div class="progress-dot">5</div><div class="progress-label">渲染</div></div>
+        <div class="progress-step"><div class="progress-dot">6</div><div class="progress-label">交付</div></div>
+      </div>
+    </div>
+    <div class="progress-card">
+      <h3 style="font-size:16px;font-weight:600;margin-bottom:16px;">最近动态</h3>
+      <div class="flex flex-col gap-sm">
+        <div class="flex gap-sm" style="padding:10px 0;border-bottom:1px solid var(--line-soft);">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--freeze);margin-top:6px;flex-shrink:0;"></div>
+          <div><div class="text-sm">陈设计 更新了 V2.1 渲染方案，等待您的确认</div><div class="text-xs text-muted">10分钟前</div></div>
+        </div>
+        <div class="flex gap-sm" style="padding:10px 0;border-bottom:1px solid var(--line-soft);">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:6px;flex-shrink:0;"></div>
+          <div><div class="text-sm">您提交了 2 条反馈意见，设计师已处理</div><div class="text-xs text-muted">1小时前</div></div>
+        </div>
+        <div class="flex gap-sm" style="padding:10px 0;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--bronze);margin-top:6px;flex-shrink:0;"></div>
+          <div><div class="text-sm">风格方案已确认，进入渲染阶段</div><div class="text-xs text-muted">昨天</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 方案展示 -->
+  <div id="tab-proposal" style="display:none;">
+    <div class="proposal-card">
+      <div class="proposal-cover" style="background:linear-gradient(135deg,#F5EDE2,#E8D9C4);">🛋️
+        <div style="position:absolute;top:12px;left:12px;"><span class="tag" style="background:rgba(255,255,255,0.9);color:var(--ink);">V2.1 · 最新</span></div>
+        <div style="position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,0.5);color:#fff;padding:4px 10px;border-radius:4px;font-size:11px;">客厅</div>
+      </div>
+      <div class="proposal-body">
+        <h3 style="font-size:16px;font-weight:600;margin-bottom:8px;">客厅 · 暖木白风格</h3>
+        <p class="text-sm text-muted" style="line-height:1.7;">根据您的反馈，沙发颜色已调整为米灰色，主灯亮度提升至 80%。整体风格保持现代简约，以木色和白色为主色调，营造温暖舒适的居住氛围。</p>
+        <div class="flex gap-sm mt-md">
+          <span class="tag tag-bronze">米灰沙发</span>
+          <span class="tag tag-accent">原木地板</span>
+          <span class="tag tag-muted">暖白灯光</span>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-2">
+      <div class="proposal-card" style="margin-bottom:0;">
+        <div class="proposal-cover" style="height:140px;background:linear-gradient(135deg,#E8F0ED,#D4E5DD);font-size:36px;">🛏️</div>
+        <div class="proposal-body" style="padding:14px;"><div class="text-sm font-semibold">主卧</div><div class="text-xs text-muted mt-sm">暖木白 · 18㎡</div></div>
+      </div>
+      <div class="proposal-card" style="margin-bottom:0;">
+        <div class="proposal-cover" style="height:140px;background:linear-gradient(135deg,#EBF1F8,#D4E2F0);font-size:36px;">📚</div>
+        <div class="proposal-body" style="padding:14px;"><div class="text-sm font-semibold">书房</div><div class="text-xs text-muted mt-sm">暖木白 · 10㎡</div></div>
+      </div>
+      <div class="proposal-card" style="margin-bottom:0;">
+        <div class="proposal-cover" style="height:140px;background:linear-gradient(135deg,#FBF3E4,#F0E0C0);font-size:36px;">🍳</div>
+        <div class="proposal-body" style="padding:14px;"><div class="text-sm font-semibold">厨房</div><div class="text-xs text-muted mt-sm">暖木白 · 8㎡</div></div>
+      </div>
+      <div class="proposal-card" style="margin-bottom:0;">
+        <div class="proposal-cover" style="height:140px;background:linear-gradient(135deg,#EDEBE5,#D9D6CC);font-size:36px;">🚿</div>
+        <div class="proposal-body" style="padding:14px;"><div class="text-sm font-semibold">卫生间</div><div class="text-xs text-muted mt-sm">暖木白 · 5㎡</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 反馈 -->
+  <div id="tab-feedback" style="display:none;">
+    <div class="feedback-area">
+      <h3 style="font-size:16px;font-weight:600;margin-bottom:16px;">对当前方案的反馈</h3>
+      <p class="text-sm text-muted mb-md">您可以在图片上圈出需要修改的地方，或直接在下方文字描述。设计师会根据您的反馈进行调整。</p>
+      <div style="width:100%;height:280px;background:linear-gradient(135deg,#F5EDE2,#E8D9C4);border-radius:8px;display:flex;align-items:center;justify-content:center;position:relative;margin-bottom:16px;">
+        <div style="text-align:center;"><div style="font-size:40px;margin-bottom:8px;">✏️</div><div class="text-sm text-muted">点击图片任意位置添加标注</div></div>
+        <div style="position:absolute;top:30%;left:25%;width:28px;height:28px;border-radius:50%;background:var(--freeze);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer;">1</div>
+        <div style="position:absolute;top:55%;right:20%;width:28px;height:28px;border-radius:50%;background:var(--freeze);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;cursor:pointer;">2</div>
+      </div>
+      <div class="form-group"><label class="form-label">文字反馈</label><textarea class="form-textarea" placeholder="请描述您对方案的意见或建议...">沙发颜色还是有点深，能不能再浅一点？另外客厅的灯光希望可以再亮一些，晚上看电视的时候感觉不够亮。</textarea></div>
+      <div class="flex justify-between items-center">
+        <span class="text-xs text-muted">已添加 2 处标注</span>
+        <button class="btn btn-primary" onclick="alert('反馈已提交，设计师会尽快处理')">提交反馈</button>
+      </div>
+    </div>
+    <div class="feedback-area">
+      <h3 style="font-size:16px;font-weight:600;margin-bottom:16px;">历史反馈</h3>
+      <div class="flex flex-col gap-sm">
+        <div style="padding:12px;background:var(--success-light);border-radius:8px;">
+          <div class="flex justify-between items-center mb-sm"><span class="text-sm font-semibold" style="color:var(--success);">✓ 已处理</span><span class="text-xs text-muted">昨天</span></div>
+          <div class="text-sm">希望主卧的衣柜能更大一些，增加收纳空间</div>
+          <div class="text-xs text-muted mt-sm" style="color:var(--success);">设计师回复：已将主卧衣柜调整为通顶设计，收纳空间增加 30%</div>
+        </div>
+        <div style="padding:12px;background:var(--accent-light);border-radius:8px;">
+          <div class="flex justify-between items-center mb-sm"><span class="text-sm font-semibold" style="color:var(--accent);">✓ 已处理</span><span class="text-xs text-muted">2天前</span></div>
+          <div class="text-sm">厨房的操作台高度希望能高一点，我身高比较高</div>
+          <div class="text-xs text-muted mt-sm" style="color:var(--accent);">设计师回复：已将操作台高度从 85cm 调整至 90cm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 确认 -->
+  <div id="tab-confirm" style="display:none;">
+    <div class="confirm-card">
+      <div style="font-size:48px;margin-bottom:16px;">📋</div>
+      <h2 style="font-size:20px;font-weight:700;margin-bottom:8px;">方案确认</h2>
+      <p class="text-sm text-muted mb-lg">请确认以下设计方案，确认后设计师将进入下一阶段工作。</p>
+      <div style="text-align:left;max-width:400px;margin:0 auto 24px;">
+        <div class="flex justify-between py-sm" style="border-bottom:1px solid var(--line-soft);"><span class="text-sm text-muted">方案版本</span><span class="text-sm font-semibold">V2.1</span></div>
+        <div class="flex justify-between py-sm" style="border-bottom:1px solid var(--line-soft);"><span class="text-sm text-muted">风格</span><span class="text-sm font-semibold">暖木白 · 现代简约</span></div>
+        <div class="flex justify-between py-sm" style="border-bottom:1px solid var(--line-soft);"><span class="text-sm text-muted">空间数</span><span class="text-sm font-semibold">6 个空间</span></div>
+        <div class="flex justify-between py-sm"><span class="text-sm text-muted">渲染图</span><span class="text-sm font-semibold">8 张</span></div>
+      </div>
+      <div class="signature-box" onclick="this.innerHTML='<span style=\'font-family:cursive;font-size:24px;color:var(--accent);\'>王先生</span>'">点击此处签名</div>
+      <label class="flex items-center gap-sm justify-center mb-lg" style="cursor:pointer;"><input type="checkbox"> 我已仔细阅读并确认以上设计方案</label>
+      <div class="flex gap-sm justify-center">
+        <button class="btn btn-secondary">返回修改</button>
+        <button class="btn btn-primary" onclick="alert('方案已确认，设计师将进入交付阶段')">确认方案</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 交付物 -->
+  <div id="tab-delivery" style="display:none;">
+    <div class="progress-card" style="text-align:center;">
+      <div style="font-size:40px;margin-bottom:12px;">📦</div>
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:4px;">交付物生成中</div>
+      <p class="text-sm text-muted mb-md">8/9 项已完成，预计还需 5 分钟</p>
+      <div class="progress" style="max-width:400px;margin:0 auto;"><div class="progress-bar" style="width:89%;"></div></div>
+    </div>
+    <div class="delivery-item"><div class="delivery-icon">📐</div><div style="flex:1;"><div class="text-sm font-semibold">施工图纸（5份）</div><div class="text-xs text-muted">平面/天花/地面/水电/节点</div></div><span class="tag tag-success">已生成</span><button class="btn btn-secondary btn-sm">下载</button></div>
+    <div class="delivery-item"><div class="delivery-icon">🧱</div><div style="flex:1;"><div class="text-sm font-semibold">硬装材料表</div><div class="text-xs text-muted">XLSX · 32KB</div></div><span class="tag tag-success">已生成</span><button class="btn btn-secondary btn-sm">下载</button></div>
+    <div class="delivery-item"><div class="delivery-icon">🪑</div><div style="flex:1;"><div class="text-sm font-semibold">软装配置清单</div><div class="text-xs text-muted">XLSX · 28KB</div></div><span class="tag tag-success">已生成</span><button class="btn btn-secondary btn-sm">下载</button></div>
+    <div class="delivery-item"><div class="delivery-icon">💰</div><div style="flex:1;"><div class="text-sm font-semibold">预算明细表</div><div class="text-xs text-muted">XLSX · 24KB · 总价 ¥186,500</div></div><span class="tag tag-success">已生成</span><button class="btn btn-secondary btn-sm">下载</button></div>
+    <div class="delivery-item"><div class="delivery-icon">🖼️</div><div style="flex:1;"><div class="text-sm font-semibold">最终版效果图集</div><div class="text-xs text-muted">ZIP · 24MB · 8张</div></div><span class="tag tag-success">已生成</span><button class="btn btn-secondary btn-sm">下载</button></div>
+    <div class="delivery-item"><div class="delivery-icon">📄</div><div style="flex:1;"><div class="text-sm font-semibold">设计说明文档</div><div class="text-xs text-muted">PDF · 2.1MB</div></div><span class="tag tag-success">已生成</span><button class="btn btn-secondary btn-sm">下载</button></div>
+    <div class="delivery-item"><div class="delivery-icon">📦</div><div style="flex:1;"><div class="text-sm font-semibold">全部文件打包</div><div class="text-xs text-muted">ZIP · 约 30MB</div></div><span class="tag tag-warning">生成中</span><button class="btn btn-secondary btn-sm" disabled>等待</button></div>
+    <div class="text-center mt-lg"><button class="btn btn-primary">📧 发送到我的邮箱</button></div>
+  </div>
+
+</div>
+<script>
+function switchTab(el, tabId) {
+  document.querySelectorAll('.customer-tab').forEach(function(t){ t.classList.remove('active'); });
+  el.classList.add('active');
+  ['tab-progress','tab-proposal','tab-feedback','tab-confirm','tab-delivery'].forEach(function(id){
+    document.getElementById(id).style.display = id === tabId ? 'block' : 'none';
+  });
+}
+</script>
+</body>
+</html>

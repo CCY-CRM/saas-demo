@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>风格深化 · 静安府</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="css/common.css">
+<style>
+  .stage-body { display:flex; gap:0; height: calc(100vh - 56px - 52px); }
+  .style-list { width:260px; border-right:1px solid var(--line); background:var(--card); overflow-y:auto; }
+  .preview-area { flex:1; background:var(--bg); display:flex; flex-direction:column; min-width:0; }
+  .config-panel { width:320px; border-left:1px solid var(--line); background:var(--card); overflow-y:auto; }
+  .style-card { padding:14px; border-bottom:1px solid var(--line-soft); cursor:pointer; transition:all 0.15s; }
+  .style-card:hover { background:var(--line-soft); }
+  .style-card.active { background:var(--accent-light); border-left:3px solid var(--accent); }
+  .style-preview { width:100%; height:80px; border-radius:6px; margin-bottom:8px; }
+  .room-tabs { display:flex; gap:0; padding:0 16px; background:var(--card); border-bottom:1px solid var(--line); }
+  .room-tab { padding:10px 16px; font-size:12px; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; color:var(--muted); }
+  .room-tab.active { color:var(--accent); border-bottom-color:var(--accent); font-weight:600; }
+  .render-preview { flex:1; display:flex; align-items:center; justify-content:center; padding:24px; }
+  .render-img { width:100%; max-width:600px; aspect-ratio:16/10; background:linear-gradient(135deg,#E8F0ED,#F5EDE2); border-radius:8px; box-shadow:var(--shadow-md); display:flex; align-items:center; justify-content:center; position:relative; }
+  .material-item { display:flex; align-items:center; gap:10px; padding:10px 12px; border-bottom:1px solid var(--line-soft); cursor:pointer; }
+  .material-item:hover { background:var(--line-soft); }
+  .material-swatch { width:36px; height:36px; border-radius:6px; border:1px solid var(--line); flex-shrink:0; }
+  .material-info { flex:1; min-width:0; }
+  .material-name { font-size:12px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .material-brand { font-size:10px; color:var(--muted); }
+  .material-price { font-size:11px; color:var(--bronze); font-weight:600; }
+  .bottom-bar { background:var(--card); border-top:1px solid var(--line); padding:12px 24px; display:flex; align-items:center; justify-content:space-between; }
+</style>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" style="width:60px;">
+    <div class="sidebar-brand" style="padding:16px 0;text-align:center;"><div class="logo" style="font-size:20px;">A</div></div>
+    <nav class="sidebar-nav"><div class="nav-section" style="padding:0 8px;">
+      <a href="index.html" class="nav-item" style="justify-content:center;padding:10px;">🏠</a>
+      <a href="projects.html" class="nav-item active" style="justify-content:center;padding:10px;">📋</a>
+      <a href="knowledge.html" class="nav-item" style="justify-content:center;padding:10px;">📚</a>
+      <a href="materials.html" class="nav-item" style="justify-content:center;padding:10px;">🧱</a>
+    </div></nav>
+  </aside>
+  <div class="main-wrapper" style="margin-left:60px;">
+    <header class="topbar">
+      <div class="topbar-title">风格匹配与设计深化</div>
+      <div class="topbar-breadcrumb"><a href="projects.html">项目中心</a> / <a href="project-overview.html">静安府</a> / 风格深化</div>
+      <div class="topbar-actions">
+        <button class="btn btn-secondary btn-sm">材料库</button>
+        <button class="btn btn-secondary btn-sm">分享给客户</button>
+        <a href="project-overview.html" class="btn btn-ghost btn-sm">返回概览</a>
+      </div>
+    </header>
+    <div class="stage-progress">
+      <a href="stage-1-modeling.html" class="stage-step done"><div class="stage-dot">✓</div><span class="stage-label">建模</span></a>
+      <a href="stage-2-interview.html" class="stage-step done"><div class="stage-dot">✓</div><span class="stage-label">需求访谈</span></a>
+      <a href="stage-3-layout.html" class="stage-step done freeze-point"><div class="stage-dot">✓</div><span class="stage-label">布局方案</span></a>
+      <a href="stage-4-style.html" class="stage-step active"><div class="stage-dot">4</div><span class="stage-label">风格深化</span></a>
+      <a href="stage-5-rendering.html" class="stage-step"><div class="stage-dot">5</div><span class="stage-label">渲染迭代</span></a>
+      <a href="stage-6-delivery.html" class="stage-step"><div class="stage-dot">6</div><span class="stage-label">交付归档</span></a>
+    </div>
+    <div class="stage-body">
+      <!-- 左侧风格列表 -->
+      <div class="style-list">
+        <div style="padding:14px;border-bottom:1px solid var(--line);">
+          <div class="text-xs font-semibold" style="color:var(--accent);">AI 匹配风格</div>
+          <div class="text-xs text-muted mt-sm">基于需求模型「现代简约+暖色调」匹配</div>
+        </div>
+        <div class="style-card active">
+          <div class="style-preview" style="background:linear-gradient(135deg,#F5EDE2,#E8D9C4);"></div>
+          <div class="text-sm font-semibold">暖木白 · 现代简约</div>
+          <div class="text-xs text-muted mt-sm">匹配度 95%</div>
+          <div class="flex gap-sm mt-sm">
+            <span class="tag tag-bronze">木色</span>
+            <span class="tag tag-muted">白色</span>
+            <span class="tag tag-accent">暖光</span>
+          </div>
+        </div>
+        <div class="style-card">
+          <div class="style-preview" style="background:linear-gradient(135deg,#E8F0ED,#D4E5DD);"></div>
+          <div class="text-sm font-semibold">清新绿 · 自然简约</div>
+          <div class="text-xs text-muted mt-sm">匹配度 82%</div>
+        </div>
+        <div class="style-card">
+          <div class="style-preview" style="background:linear-gradient(135deg,#F0E8E0,#E0D0C0);"></div>
+          <div class="text-sm font-semibold">奶油咖 · 侘寂风</div>
+          <div class="text-xs text-muted mt-sm">匹配度 76%</div>
+        </div>
+        <div style="padding:14px;">
+          <button class="btn btn-secondary btn-sm w-full">+ 从工具箱选风格</button>
+        </div>
+      </div>
+      <!-- 中间预览 -->
+      <div class="preview-area">
+        <div class="room-tabs">
+          <div class="room-tab active">客厅</div>
+          <div class="room-tab">主卧</div>
+          <div class="room-tab">书房</div>
+          <div class="room-tab">厨房</div>
+          <div class="room-tab">次卧</div>
+          <div class="room-tab">卫生间</div>
+        </div>
+        <div class="render-preview">
+          <div class="render-img">
+            <div style="text-align:center;">
+              <div style="font-size:48px;margin-bottom:8px;">🛋️</div>
+              <div class="text-sm text-muted">客厅 · 暖木白风格效果图</div>
+              <div class="text-xs text-muted mt-sm">点击右侧材料可实时预览替换效果</div>
+            </div>
+            <div style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,0.9);padding:4px 10px;border-radius:4px;font-size:10px;color:var(--ink-soft);">AI 渲染预览</div>
+          </div>
+        </div>
+      </div>
+      <!-- 右侧配置 -->
+      <div class="config-panel">
+        <div class="tabs" style="margin:0;padding:0 16px;">
+          <div class="tab active">硬装材料</div>
+          <div class="tab">软装家具</div>
+        </div>
+        <div style="padding:0;">
+          <div style="padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line);">
+            <div class="text-xs font-semibold">墙面材料</div>
+          </div>
+          <div class="material-item">
+            <div class="material-swatch" style="background:#F5F0E8;"></div>
+            <div class="material-info">
+              <div class="material-name">米白色乳胶漆</div>
+              <div class="material-brand">立邦 · 净味120</div>
+            </div>
+            <div class="material-price">¥38/㎡</div>
+          </div>
+          <div style="padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line);">
+            <div class="text-xs font-semibold">地面材料</div>
+          </div>
+          <div class="material-item">
+            <div class="material-swatch" style="background:linear-gradient(135deg,#D4B896,#B8956A);"></div>
+            <div class="material-info">
+              <div class="material-name">原木色多层实木地板</div>
+              <div class="material-brand">圣象 · 橡木</div>
+            </div>
+            <div class="material-price">¥268/㎡</div>
+          </div>
+          <div style="padding:10px 16px;background:var(--bg);border-bottom:1px solid var(--line);">
+            <div class="text-xs font-semibold">吊顶材料</div>
+          </div>
+          <div class="material-item">
+            <div class="material-swatch" style="background:#FAFAFA;"></div>
+            <div class="material-info">
+              <div class="material-name">白色石膏板吊顶</div>
+              <div class="material-brand">可耐福 · 9.5mm</div>
+            </div>
+            <div class="material-price">¥120/㎡</div>
+          </div>
+          <div style="padding:14px 16px;border-top:1px solid var(--line);background:var(--card);">
+            <div class="flex justify-between text-sm mb-sm">
+              <span class="text-muted">硬装材料预估</span>
+              <span class="font-semibold">¥ 38,500</span>
+            </div>
+            <div class="progress"><div class="progress-bar bronze" style="width:65%;"></div></div>
+            <div class="text-xs text-muted mt-sm">占总预算 65% · 预算 ¥30,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <div class="text-sm text-muted">当前风格：暖木白 · 已配置 4/6 空间 · 材料预算 ¥38,500</div>
+      <div class="flex gap-sm">
+        <button class="btn btn-secondary">保存配置</button>
+        <button class="btn btn-secondary">生成汇报材料</button>
+        <a href="stage-5-rendering.html" class="btn btn-primary">进入渲染迭代 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/common.js"></script>
+</body>
+</html>

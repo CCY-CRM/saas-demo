@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>渲染迭代 · 静安府</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="css/common.css">
+<style>
+  .stage-body { display:flex; gap:0; height: calc(100vh - 56px - 52px); }
+  .version-list { width:200px; border-right:1px solid var(--line); background:var(--card); overflow-y:auto; }
+  .render-area { flex:1; background:var(--bg); display:flex; flex-direction:column; min-width:0; }
+  .feedback-panel { width:340px; border-left:1px solid var(--line); background:var(--card); overflow-y:auto; }
+  .version-item { padding:12px 14px; border-bottom:1px solid var(--line-soft); cursor:pointer; border-left:3px solid transparent; }
+  .version-item:hover { background:var(--line-soft); }
+  .version-item.active { background:var(--accent-light); border-left-color:var(--accent); }
+  .version-num { font-size:13px; font-weight:600; }
+  .version-meta { font-size:10px; color:var(--muted); margin-top:2px; }
+  .version-thumb { width:100%; height:50px; background:linear-gradient(135deg,#E8F0ED,#F5EDE2); border-radius:4px; margin-top:6px; display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .render-main { flex:1; display:flex; align-items:center; justify-content:center; padding:24px; position:relative; }
+  .render-image { width:100%; max-width:640px; aspect-ratio:16/10; background:linear-gradient(135deg,#F5EDE2,#E8D9C4); border-radius:8px; box-shadow:var(--shadow-lg); display:flex; align-items:center; justify-content:center; position:relative; }
+  .annotation { position:absolute; width:28px; height:28px; border-radius:50%; background:var(--freeze); color:#fff; font-size:12px; font-weight:600; display:flex; align-items:center; justify-content:center; cursor:pointer; border:2px solid #fff; box-shadow:var(--shadow-md); }
+  .feedback-item { padding:12px 14px; border-bottom:1px solid var(--line-soft); }
+  .feedback-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
+  .feedback-source { font-size:11px; font-weight:600; }
+  .feedback-text { font-size:12px; color:var(--ink-soft); line-height:1.6; margin-bottom:8px; }
+  .intent-box { background:var(--accent-light); border-radius:6px; padding:8px 10px; font-size:11px; }
+  .intent-type { display:inline-block; padding:2px 6px; border-radius:3px; font-size:10px; font-weight:600; margin-right:4px; }
+  .suggestion-item { display:flex; align-items:center; gap:8px; padding:6px 8px; background:#fff; border:1px solid var(--line); border-radius:4px; margin-top:4px; cursor:pointer; font-size:11px; }
+  .suggestion-item:hover { border-color:var(--accent); }
+  .swatch { width:20px; height:20px; border-radius:3px; flex-shrink:0; }
+  .bottom-bar { background:var(--card); border-top:1px solid var(--line); padding:12px 24px; display:flex; align-items:center; justify-content:space-between; }
+  .rendering-overlay { position:absolute; inset:0; background:rgba(245,243,239,0.95); display:flex; flex-direction:column; align-items:center; justify-content:center; border-radius:8px; z-index:10; }
+</style>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" style="width:60px;">
+    <div class="sidebar-brand" style="padding:16px 0;text-align:center;"><div class="logo" style="font-size:20px;">A</div></div>
+    <nav class="sidebar-nav"><div class="nav-section" style="padding:0 8px;">
+      <a href="index.html" class="nav-item" style="justify-content:center;padding:10px;">🏠</a>
+      <a href="projects.html" class="nav-item active" style="justify-content:center;padding:10px;">📋</a>
+      <a href="knowledge.html" class="nav-item" style="justify-content:center;padding:10px;">📚</a>
+      <a href="materials.html" class="nav-item" style="justify-content:center;padding:10px;">🧱</a>
+    </div></nav>
+  </aside>
+  <div class="main-wrapper" style="margin-left:60px;">
+    <header class="topbar">
+      <div class="topbar-title">渲染迭代</div>
+      <div class="topbar-breadcrumb"><a href="projects.html">项目中心</a> / <a href="project-overview.html">静安府</a> / 渲染迭代</div>
+      <div class="topbar-actions">
+        <button class="btn btn-secondary btn-sm">版本对比</button>
+        <button class="btn btn-secondary btn-sm">客户视图</button>
+        <a href="project-overview.html" class="btn btn-ghost btn-sm">返回概览</a>
+      </div>
+    </header>
+    <div class="stage-progress">
+      <a href="stage-1-modeling.html" class="stage-step done"><div class="stage-dot">✓</div><span class="stage-label">建模</span></a>
+      <a href="stage-2-interview.html" class="stage-step done"><div class="stage-dot">✓</div><span class="stage-label">需求访谈</span></a>
+      <a href="stage-3-layout.html" class="stage-step done freeze-point"><div class="stage-dot">✓</div><span class="stage-label">布局方案</span></a>
+      <a href="stage-4-style.html" class="stage-step done"><div class="stage-dot">✓</div><span class="stage-label">风格深化</span></a>
+      <a href="stage-5-rendering.html" class="stage-step active freeze-point"><div class="stage-dot">5</div><span class="stage-label">渲染迭代</span></a>
+      <a href="stage-6-delivery.html" class="stage-step"><div class="stage-dot">6</div><span class="stage-label">交付归档</span></a>
+    </div>
+    <div class="stage-body">
+      <!-- 左侧版本列表 -->
+      <div class="version-list">
+        <div style="padding:12px 14px;border-bottom:1px solid var(--line);">
+          <div class="text-xs font-semibold">版本历史</div>
+          <div class="text-xs text-muted mt-sm">共 3 个版本</div>
+        </div>
+        <div class="version-item active">
+          <div class="flex items-center justify-between">
+            <span class="version-num">V2.1</span>
+            <span class="tag tag-warning">待确认</span>
+          </div>
+          <div class="version-meta">今天 14:30 · 陈设计</div>
+          <div class="version-thumb">🛋️</div>
+        </div>
+        <div class="version-item">
+          <div class="flex items-center justify-between">
+            <span class="version-num">V2.0</span>
+            <span class="tag tag-muted">已修改</span>
+          </div>
+          <div class="version-meta">昨天 16:20 · 陈设计</div>
+          <div class="version-thumb">🛋️</div>
+        </div>
+        <div class="version-item">
+          <div class="flex items-center justify-between">
+            <span class="version-num">V1.0</span>
+            <span class="tag tag-success">首轮</span>
+          </div>
+          <div class="version-meta">3天前 10:00 · AI 自动</div>
+          <div class="version-thumb">🛋️</div>
+        </div>
+        <div style="padding:14px;">
+          <button class="btn btn-primary btn-sm w-full">+ 重新渲染</button>
+        </div>
+      </div>
+      <!-- 中间渲染图 -->
+      <div class="render-area">
+        <div style="display:flex;gap:0;padding:0 16px;background:var(--card);border-bottom:1px solid var(--line);">
+          <div class="room-tab" style="padding:10px 16px;font-size:12px;cursor:pointer;border-bottom:2px solid var(--accent);color:var(--accent);font-weight:600;">客厅</div>
+          <div class="room-tab" style="padding:10px 16px;font-size:12px;cursor:pointer;color:var(--muted);">主卧</div>
+          <div class="room-tab" style="padding:10px 16px;font-size:12px;cursor:pointer;color:var(--muted);">书房</div>
+          <div class="room-tab" style="padding:10px 16px;font-size:12px;cursor:pointer;color:var(--muted);">厨房</div>
+          <span style="flex:1;"></span>
+          <button class="btn btn-ghost btn-sm" style="margin:6px 0;">✏️ 标注工具</button>
+        </div>
+        <div class="render-main">
+          <div class="render-image">
+            <div style="text-align:center;z-index:1;">
+              <div style="font-size:56px;margin-bottom:12px;">🛋️</div>
+              <div class="text-sm font-semibold">客厅 · V2.1 渲染图</div>
+              <div class="text-xs text-muted mt-sm">暖木白风格 · 1920×1080 · 已标注 2 处</div>
+            </div>
+            <div class="annotation" style="top:30%;left:25%;" title="客户反馈：沙发颜色偏深">1</div>
+            <div class="annotation" style="top:55%;right:20%;" title="客户反馈：灯光偏暗">2</div>
+            <div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.5);color:#fff;padding:4px 10px;border-radius:4px;font-size:10px;">V2.1 · 2026-09-09 14:30</div>
+          </div>
+        </div>
+      </div>
+      <!-- 右侧反馈面板 -->
+      <div class="feedback-panel">
+        <div style="padding:14px;border-bottom:1px solid var(--line);background:var(--freeze-light);">
+          <div class="flex items-center gap-sm">
+            <span style="color:var(--freeze);font-size:16px;">●</span>
+            <span class="text-sm font-semibold" style="color:var(--freeze);">2 条客户反馈待处理</span>
+          </div>
+        </div>
+        <div class="feedback-item">
+          <div class="feedback-header">
+            <span class="feedback-source" style="color:var(--freeze);">📍 标注 1 · 客厅沙发</span>
+            <span class="text-xs text-muted">10分钟前</span>
+          </div>
+          <div class="feedback-text">"沙发颜色太深了，想要浅一点的颜色，米灰或者浅咖都可以"</div>
+          <div class="intent-box">
+            <div class="mb-sm"><span class="intent-tag" style="background:var(--info-light);color:var(--info);">替换类</span> AI 识别：沙发颜色 → 推荐浅色系</div>
+            <div class="suggestion-item" onclick="this.style.borderColor='var(--accent)'">
+              <div class="swatch" style="background:#C8C0B4;"></div>
+              <span style="flex:1;">米灰色布艺沙发</span>
+              <span class="text-xs" style="color:var(--bronze);">¥4,280</span>
+            </div>
+            <div class="suggestion-item">
+              <div class="swatch" style="background:#B8A898;"></div>
+              <span style="flex:1;">浅咖色科技布沙发</span>
+              <span class="text-xs" style="color:var(--bronze);">¥3,980</span>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm w-full mt-sm">应用此修改</button>
+        </div>
+        <div class="feedback-item">
+          <div class="feedback-header">
+            <span class="feedback-source" style="color:var(--freeze);">📍 标注 2 · 客厅灯光</span>
+            <span class="text-xs text-muted">10分钟前</span>
+          </div>
+          <div class="feedback-text">"感觉客厅灯光有点暗，晚上看电视的时候不够亮"</div>
+          <div class="intent-box">
+            <div class="mb-sm"><span class="intent-tag" style="background:var(--warning-light);color:var(--warning);">调整类</span> AI 识别：主灯亮度 → 建议提升至 80%</div>
+            <div style="padding:8px;background:#fff;border-radius:4px;margin-top:4px;">
+              <div class="flex justify-between text-xs mb-sm"><span>当前亮度</span><span class="font-semibold">60%</span></div>
+              <div class="progress"><div class="progress-bar bronze" style="width:60%;"></div></div>
+              <div class="text-xs text-muted mt-sm">建议调整至 80%</div>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-sm w-full mt-sm">应用此修改</button>
+        </div>
+        <div style="padding:14px;border-top:1px solid var(--line);">
+          <button class="btn btn-secondary w-full mb-sm">📝 手动添加修改</button>
+          <button class="btn btn-primary w-full">🔄 应用全部修改并重新渲染</button>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <div class="text-sm text-muted">当前版本 V2.1 · 2 条反馈待处理 · 客户已查看</div>
+      <div class="flex gap-sm">
+        <button class="btn btn-secondary">导出效果图</button>
+        <button class="btn btn-secondary">分享给客户</button>
+        <button class="btn btn-primary" style="background:var(--freeze);border-color:var(--freeze);">🔒 确认本版本</button>
+        <a href="stage-6-delivery.html" class="btn btn-primary">最终方案确认 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/common.js"></script>
+</body>
+</html>

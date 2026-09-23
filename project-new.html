@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新建项目 · AI 室内设计平台</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="css/common.css">
+<style>
+  .wizard-wrap { max-width: 720px; margin: 0 auto; }
+  .wizard-steps {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; margin-bottom: 32px;
+  }
+  .wizard-step {
+    display: flex; align-items: center; gap: 8px;
+    padding: 0 16px;
+  }
+  .wizard-step:not(:last-child)::after {
+    content: ''; width: 40px; height: 2px; background: var(--line);
+    margin-left: 16px;
+  }
+  .wizard-step.done:not(:last-child)::after { background: var(--accent); }
+  .wizard-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600;
+    background: var(--line-soft); color: var(--muted);
+    border: 2px solid var(--line);
+  }
+  .wizard-step.active .wizard-dot {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+  .wizard-step.done .wizard-dot {
+    background: var(--accent-light); color: var(--accent); border-color: var(--accent);
+  }
+  .wizard-label { font-size: 13px; color: var(--muted); }
+  .wizard-step.active .wizard-label { color: var(--accent); font-weight: 600; }
+  .wizard-step.done .wizard-label { color: var(--ink-soft); }
+  .entry-card {
+    border: 2px solid var(--line);
+    border-radius: var(--r-md);
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .entry-card:hover { border-color: var(--accent); background: var(--accent-light); }
+  .entry-card.selected { border-color: var(--accent); background: var(--accent-light); }
+  .entry-icon { font-size: 36px; margin-bottom: 12px; }
+  .entry-name { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .entry-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo">AI Design Studio</div>
+      <div class="sub">INTERIOR · AI WORKFLOW</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <a href="index.html" class="nav-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          工作台
+        </a>
+        <a href="projects.html" class="nav-item active">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          项目中心
+        </a>
+        <a href="knowledge.html" class="nav-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          工具箱
+        </a>
+        <a href="materials.html" class="nav-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          材料库
+        </a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">管理</div>
+        <a href="team.html" class="nav-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          团队
+        </a>
+        <a href="settings.html" class="nav-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          设置
+        </a>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="avatar">陈</div>
+      <div class="user-info">
+        <div class="user-name">陈设计</div>
+        <div class="user-role">首席设计师</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-title">新建项目</div>
+      <div class="topbar-breadcrumb"><a href="projects.html">项目中心</a> / 新建项目</div>
+      <div class="topbar-actions">
+        <a href="projects.html" class="btn btn-ghost btn-sm">取消</a>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="wizard-wrap">
+        <!-- 步骤指示器 -->
+        <div class="wizard-steps">
+          <div class="wizard-step active">
+            <div class="wizard-dot">1</div>
+            <span class="wizard-label">基本信息</span>
+          </div>
+          <div class="wizard-step">
+            <div class="wizard-dot">2</div>
+            <span class="wizard-label">团队配置</span>
+          </div>
+          <div class="wizard-step">
+            <div class="wizard-dot">3</div>
+            <span class="wizard-label">建模入口</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 style="font-size:18px;font-weight:600;margin-bottom:6px;">项目基本信息</h2>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:24px;">填写项目和客户的基础信息，这些信息将用于后续的 AI 需求访谈和方案生成。</p>
+
+          <div class="grid grid-2">
+            <div class="form-group">
+              <label class="form-label">项目名称 <span style="color:var(--freeze);">*</span></label>
+              <input type="text" class="form-input" placeholder="如：静安府 · 120㎡ 现代简约" value="静安府 · 120㎡ 现代简约">
+            </div>
+            <div class="form-group">
+              <label class="form-label">项目地址</label>
+              <input type="text" class="form-input" placeholder="请输入详细地址" value="上海市静安区xxx路xxx号">
+            </div>
+            <div class="form-group">
+              <label class="form-label">户型类型</label>
+              <select class="form-select">
+                <option>一室一厅</option>
+                <option selected>两室一厅</option>
+                <option>三室两厅</option>
+                <option>四室两厅</option>
+                <option>复式/别墅</option>
+                <option>其他</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">建筑面积（㎡）</label>
+              <input type="number" class="form-input" placeholder="请输入面积" value="120">
+            </div>
+            <div class="form-group">
+              <label class="form-label">客户姓名 <span style="color:var(--freeze);">*</span></label>
+              <input type="text" class="form-input" placeholder="请输入客户姓名" value="王先生">
+            </div>
+            <div class="form-group">
+              <label class="form-label">联系电话</label>
+              <input type="tel" class="form-input" placeholder="请输入联系电话" value="138****8888">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">项目备注</label>
+            <textarea class="form-textarea" placeholder="可选，记录项目特殊要求、客户偏好等">客户偏好现代简约风格，预算约30万，希望有独立书房和衣帽间。</textarea>
+          </div>
+
+          <div class="flex justify-between items-center mt-lg" style="padding-top:20px;border-top:1px solid var(--line-soft);">
+            <a href="projects.html" class="btn btn-ghost">取消</a>
+            <div class="flex gap-sm">
+              <button class="btn btn-secondary" disabled>上一步</button>
+              <a href="project-overview.html" class="btn btn-primary">下一步 →</a>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-center text-xs text-muted mt-md">创建项目后，系统将自动调用 spatialLM 生成空间母模型，并创建标准化项目文件体系。</p>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="js/common.js"></script>
+</body>
+</html>

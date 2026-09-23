@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>预算估算器 · 工具箱</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="css/common.css">
+<style>
+  .tool-header { background:var(--card); border-bottom:1px solid var(--line); padding:16px 24px; display:flex; align-items:center; gap:16px; }
+  .back-btn { display:flex; align-items:center; gap:6px; color:var(--ink-soft); font-size:13px; cursor:pointer; text-decoration:none; }
+  .back-btn:hover { color:var(--accent); }
+  .tool-title { font-size:18px; font-weight:700; }
+  .budget-layout { display:grid; grid-template-columns:380px 1fr; gap:24px; max-width:1100px; margin:0 auto; }
+  .input-card { background:var(--card); border-radius:12px; padding:24px; height:fit-content; }
+  .result-card { background:var(--card); border-radius:12px; padding:24px; }
+  .level-option { padding:14px; border:2px solid var(--line); border-radius:8px; cursor:pointer; margin-bottom:10px; transition:all 0.2s; }
+  .level-option:hover { border-color:var(--accent); }
+  .level-option.selected { border-color:var(--accent); background:var(--accent-light); }
+  .level-name { font-size:14px; font-weight:600; margin-bottom:4px; }
+  .level-desc { font-size:11px; color:var(--muted); }
+  .level-price { font-size:12px; color:var(--accent); font-weight:600; margin-top:4px; }
+  .budget-bar { height:28px; border-radius:4px; overflow:hidden; display:flex; margin:12px 0; }
+  .budget-seg { display:flex; align-items:center; justify-content:center; font-size:10px; color:#fff; font-weight:500; }
+  .budget-item { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--line-soft); }
+  .budget-dot { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
+  .budget-name { flex:1; font-size:13px; }
+  .budget-amount { font-size:13px; font-weight:600; }
+  .budget-pct { font-size:11px; color:var(--muted); width:50px; text-align:right; }
+</style>
+</head>
+<body>
+<div class="tool-header">
+  <a href="knowledge.html" class="back-btn">← 返回工具箱</a>
+  <div class="tool-title">💰 预算估算器</div>
+  <span class="tag tag-info">快速估算</span>
+  <span style="flex:1;"></span>
+  <button class="btn btn-secondary btn-sm">导出预算表</button>
+</div>
+<main class="content">
+  <div class="budget-layout">
+    <div class="input-card">
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:16px;">项目信息</h3>
+      <div class="form-group"><label class="form-label">房屋面积 (㎡)</label><input type="number" class="form-input" value="120" id="area"></div>
+      <div class="form-group"><label class="form-label">户型</label>
+        <select class="form-select" id="huxing"><option>三室两厅</option><option>两室一厅</option><option>四室两厅</option><option>一室一厅</option><option>复式/别墅</option></select>
+      </div>
+      <div class="form-group"><label class="form-label">装修档次</label>
+        <div class="level-option selected" onclick="selectLevel(this,800)">
+          <div class="level-name">🏠 经济型</div>
+          <div class="level-desc">基础装修，国产主材，满足基本居住需求</div>
+          <div class="level-price">约 800-1200 元/㎡</div>
+        </div>
+        <div class="level-option" onclick="selectLevel(this,1500)">
+          <div class="level-name">🏡 舒适型</div>
+          <div class="level-desc">中等装修，品牌主材，注重品质和设计感</div>
+          <div class="level-price">约 1500-2500 元/㎡</div>
+        </div>
+        <div class="level-option" onclick="selectLevel(this,3000)">
+          <div class="level-name">🏛️ 品质型</div>
+          <div class="level-desc">高端装修，进口主材，全屋定制，设计师全程跟进</div>
+          <div class="level-price">约 3000-5000 元/㎡</div>
+        </div>
+      </div>
+      <div class="form-group"><label class="form-label">包含项目</label>
+        <div class="flex flex-col gap-sm">
+          <label class="flex items-center gap-sm" style="cursor:pointer;font-size:13px;"><input type="checkbox" checked> 硬装施工</label>
+          <label class="flex items-center gap-sm" style="cursor:pointer;font-size:13px;"><input type="checkbox" checked> 主材采购</label>
+          <label class="flex items-center gap-sm" style="cursor:pointer;font-size:13px;"><input type="checkbox" checked> 全屋定制</label>
+          <label class="flex items-center gap-sm" style="cursor:pointer;font-size:13px;"><input type="checkbox" checked> 软装家具</label>
+          <label class="flex items-center gap-sm" style="cursor:pointer;font-size:13px;"><input type="checkbox"> 家电采购</label>
+        </div>
+      </div>
+      <button class="btn btn-primary w-full mt-md" onclick="calcBudget()">估算预算</button>
+    </div>
+    <div class="result-card">
+      <div class="flex items-center justify-between mb-md">
+        <h3 style="font-size:15px;font-weight:600;">预算明细</h3>
+        <span class="text-xs text-muted">基于 120㎡ · 舒适型 · 三室两厅</span>
+      </div>
+      <div style="text-align:center;padding:24px;background:linear-gradient(135deg,var(--accent-light),#E8F0ED);border-radius:12px;margin-bottom:20px;">
+        <div class="text-xs text-muted mb-sm">预计总预算</div>
+        <div style="font-family:'Noto Serif SC',serif;font-size:40px;font-weight:700;color:var(--accent);">¥ 240,000</div>
+        <div class="text-xs text-muted mt-sm">约 2,000 元/㎡ · 不含家电</div>
+      </div>
+      <div class="budget-bar">
+        <div class="budget-seg" style="width:35%;background:var(--accent);">硬装 35%</div>
+        <div class="budget-seg" style="width:30%;background:var(--bronze);">主材 30%</div>
+        <div class="budget-seg" style="width:18%;background:var(--info);">定制 18%</div>
+        <div class="budget-seg" style="width:12%;background:var(--warning);">软装 12%</div>
+        <div class="budget-seg" style="width:5%;background:var(--muted);">其他 5%</div>
+      </div>
+      <div class="budget-item"><div class="budget-dot" style="background:var(--accent);"></div><div class="budget-name">硬装施工（水电/泥木/油漆）</div><div class="budget-amount">¥ 84,000</div><div class="budget-pct">35%</div></div>
+      <div class="budget-item"><div class="budget-dot" style="background:var(--bronze);"></div><div class="budget-name">主材（瓷砖/地板/门窗/卫浴）</div><div class="budget-amount">¥ 72,000</div><div class="budget-pct">30%</div></div>
+      <div class="budget-item"><div class="budget-dot" style="background:var(--info);"></div><div class="budget-name">全屋定制（橱柜/衣柜/鞋柜）</div><div class="budget-amount">¥ 43,200</div><div class="budget-pct">18%</div></div>
+      <div class="budget-item"><div class="budget-dot" style="background:var(--warning);"></div><div class="budget-name">软装家具（沙发/床/餐桌/灯具）</div><div class="budget-amount">¥ 28,800</div><div class="budget-pct">12%</div></div>
+      <div class="budget-item"><div class="budget-dot" style="background:var(--muted);"></div><div class="budget-name">其他（设计费/管理费/保洁）</div><div class="budget-amount">¥ 12,000</div><div class="budget-pct">5%</div></div>
+      <div class="mt-lg" style="padding:16px;background:var(--warning-light);border-radius:8px;">
+        <div class="text-sm font-semibold" style="color:var(--warning);">💡 省钱建议</div>
+        <div class="text-xs text-muted mt-sm" style="line-height:1.8;">1. 厨卫空间重点投入，卧室可适当降低标准<br>2. 瓷砖选择国产一线品牌，性价比高于进口<br>3. 全屋定制选择颗粒板+PET门板，比实木便宜40%<br>4. 软装可分批采购，先满足基本需求</div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+var selectedPrice = 800;
+function selectLevel(el, price) {
+  document.querySelectorAll('.level-option').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  selectedPrice = price;
+}
+function calcBudget() {
+  var area = parseFloat(document.getElementById('area').value) || 120;
+  var total = area * selectedPrice * 1.5;
+  alert('预计总预算：¥ ' + total.toLocaleString() + '（' + (total/area).toFixed(0) + ' 元/㎡）');
+}
+</script>
+</body>
+</html>

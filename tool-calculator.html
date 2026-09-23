@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>材料用量计算器 · 工具箱</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="css/common.css">
+<style>
+  .tool-header { background:var(--card); border-bottom:1px solid var(--line); padding:16px 24px; display:flex; align-items:center; gap:16px; }
+  .back-btn { display:flex; align-items:center; gap:6px; color:var(--ink-soft); font-size:13px; cursor:pointer; text-decoration:none; }
+  .back-btn:hover { color:var(--accent); }
+  .tool-title { font-size:18px; font-weight:700; }
+  .calc-layout { display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:1000px; margin:0 auto; }
+  .input-card { background:var(--card); border-radius:12px; padding:24px; }
+  .result-card { background:var(--card); border-radius:12px; padding:24px; }
+  .material-tabs { display:flex; gap:0; margin-bottom:20px; border-bottom:2px solid var(--line); }
+  .mat-tab { padding:10px 16px; font-size:13px; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; color:var(--muted); font-weight:500; }
+  .mat-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
+  .result-row { display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--line-soft); }
+  .result-row:last-child { border-bottom:none; }
+  .result-label { font-size:13px; color:var(--ink-soft); }
+  .result-value { font-size:14px; font-weight:600; color:var(--ink); }
+  .result-total { background:var(--accent-light); border-radius:8px; padding:16px; margin-top:16px; text-align:center; }
+  .result-total .num { font-family:'Noto Serif SC',serif; font-size:28px; font-weight:700; color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="tool-header">
+  <a href="knowledge.html" class="back-btn">← 返回工具箱</a>
+  <div class="tool-title">🧮 材料用量计算器</div>
+  <span class="tag tag-bronze">精准计算</span>
+  <span style="flex:1;"></span>
+  <button class="btn btn-secondary btn-sm">导出清单</button>
+</div>
+<main class="content">
+  <div class="calc-layout">
+    <div class="input-card">
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:16px;">输入参数</h3>
+      <div class="material-tabs">
+        <div class="mat-tab active">瓷砖</div>
+        <div class="mat-tab">地板</div>
+        <div class="mat-tab">涂料</div>
+        <div class="mat-tab">壁纸</div>
+      </div>
+      <div class="grid grid-2 gap-md">
+        <div class="form-group"><label class="form-label">房间长度 (m)</label><input type="number" class="form-input" value="5.2" id="len"></div>
+        <div class="form-group"><label class="form-label">房间宽度 (m)</label><input type="number" class="form-input" value="4.0" id="wid"></div>
+        <div class="form-group"><label class="form-label">房间高度 (m)</label><input type="number" class="form-input" value="2.8" id="hei"></div>
+        <div class="form-group"><label class="form-label">门窗面积 (㎡)</label><input type="number" class="form-input" value="3.5" id="win"></div>
+      </div>
+      <div class="form-group"><label class="form-label">瓷砖规格</label>
+        <select class="form-select" id="size">
+          <option value="0.64">800×800mm (0.64㎡/片)</option>
+          <option value="0.72">600×1200mm (0.72㎡/片)</option>
+          <option value="1.125">750×1500mm (1.125㎡/片)</option>
+          <option value="0.36">600×600mm (0.36㎡/片)</option>
+          <option value="0.09">300×300mm (0.09㎡/片)</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="form-label">损耗率 (%)</label>
+        <input type="range" class="w-full" min="3" max="15" value="8" id="loss" oninput="document.getElementById('lossVal').textContent=this.value+'%'">
+        <div class="text-xs text-muted mt-sm">当前损耗率：<span id="lossVal">8%</span>（常规5-10%，异形空间建议10-15%）</div>
+      </div>
+      <button class="btn btn-primary w-full mt-md" onclick="calc()">计算用量</button>
+    </div>
+    <div class="result-card">
+      <h3 style="font-size:15px;font-weight:600;margin-bottom:16px;">计算结果</h3>
+      <div class="result-row"><span class="result-label">地面面积</span><span class="result-value" id="r1">20.8 ㎡</span></div>
+      <div class="result-row"><span class="result-label">墙面面积（扣门窗）</span><span class="result-value" id="r2">48.1 ㎡</span></div>
+      <div class="result-row"><span class="result-label">瓷砖单片面积</span><span class="result-value" id="r3">0.64 ㎡/片</span></div>
+      <div class="result-row"><span class="result-label">理论用量（地面）</span><span class="result-value" id="r4">33 片</span></div>
+      <div class="result-row"><span class="result-label">加损耗后用量</span><span class="result-value" id="r5" style="color:var(--accent);">36 片</span></div>
+      <div class="result-row"><span class="result-label">建议采购量（整箱）</span><span class="result-value" id="r6" style="color:var(--freeze);">4 箱（40片）</span></div>
+      <div class="result-total">
+        <div class="text-xs text-muted mb-sm">预计总用量</div>
+        <div class="num" id="r7">22.5 ㎡</div>
+        <div class="text-xs text-muted mt-sm">含 8% 损耗</div>
+      </div>
+      <div class="text-xs text-muted mt-md" style="line-height:1.7;">💡 提示：实际采购时建议多买1-2箱备用，不同批次瓷砖可能存在色差。剩余未拆封瓷砖通常可退换。</div>
+    </div>
+  </div>
+</main>
+<script>
+function calc() {
+  var l = parseFloat(document.getElementById('len').value) || 0;
+  var w = parseFloat(document.getElementById('wid').value) || 0;
+  var h = parseFloat(document.getElementById('hei').value) || 0;
+  var win = parseFloat(document.getElementById('win').value) || 0;
+  var size = parseFloat(document.getElementById('size').value) || 0.64;
+  var loss = parseFloat(document.getElementById('loss').value) || 8;
+  var floor = l * w;
+  var wall = (l + w) * 2 * h - win;
+  var pieces = Math.ceil(floor / size);
+  var piecesLoss = Math.ceil(pieces * (1 + loss / 100));
+  var boxes = Math.ceil(piecesLoss / 10);
+  var totalArea = (floor * (1 + loss / 100)).toFixed(1);
+  document.getElementById('r1').textContent = floor.toFixed(1) + ' ㎡';
+  document.getElementById('r2').textContent = wall.toFixed(1) + ' ㎡';
+  document.getElementById('r3').textContent = size + ' ㎡/片';
+  document.getElementById('r4').textContent = pieces + ' 片';
+  document.getElementById('r5').textContent = piecesLoss + ' 片';
+  document.getElementById('r6').textContent = boxes + ' 箱（' + (boxes*10) + '片）';
+  document.getElementById('r7').textContent = totalArea + ' ㎡';
+}
+</script>
+</body>
+</html>

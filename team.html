@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>团队管理 · AI 室内设计平台</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" style="width:60px;">
+    <div class="sidebar-brand" style="padding:16px 0;text-align:center;"><div class="logo" style="font-size:20px;">A</div></div>
+    <nav class="sidebar-nav"><div class="nav-section" style="padding:0 8px;">
+      <a href="index.html" class="nav-item" style="justify-content:center;padding:10px;">🏠</a>
+      <a href="projects.html" class="nav-item" style="justify-content:center;padding:10px;">📋</a>
+      <a href="knowledge.html" class="nav-item" style="justify-content:center;padding:10px;">📚</a>
+      <a href="materials.html" class="nav-item" style="justify-content:center;padding:10px;">🧱</a>
+    </div><div class="nav-section" style="padding:0 8px;">
+      <a href="team.html" class="nav-item active" style="justify-content:center;padding:10px;">👥</a>
+      <a href="settings.html" class="nav-item" style="justify-content:center;padding:10px;">⚙️</a>
+    </div></nav>
+  </aside>
+  <div class="main-wrapper" style="margin-left:60px;">
+    <header class="topbar">
+      <div class="topbar-title">团队管理</div>
+      <div class="topbar-breadcrumb">共 8 名成员 · 3 个角色</div>
+      <div class="topbar-actions">
+        <button class="btn btn-secondary btn-sm">角色权限</button>
+        <button class="btn btn-primary btn-sm">+ 邀请成员</button>
+      </div>
+    </header>
+    <main class="content">
+      <div class="grid grid-4 mb-lg">
+        <div class="stat-card"><div class="stat-label">团队成员</div><div class="stat-value">8</div></div>
+        <div class="stat-card"><div class="stat-label">进行中项目</div><div class="stat-value">8</div></div>
+        <div class="stat-card"><div class="stat-label">本月完成</div><div class="stat-value">5</div></div>
+        <div class="stat-card"><div class="stat-label">平均项目周期</div><div class="stat-value">28<span style="font-size:14px;">天</span></div></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">成员列表</div>
+          <div class="flex gap-sm">
+            <select class="form-select" style="width:auto;padding:6px 12px;font-size:12px;"><option>全部角色</option><option>管理员</option><option>设计师</option><option>客户</option></select>
+            <div class="topbar-search" style="position:relative;"><span class="search-icon">⌕</span><input type="text" placeholder="搜索成员..." style="width:180px;"></div>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>成员</th><th>角色</th><th>参与项目</th><th>进行中</th><th>本月完成</th><th>加入时间</th><th>状态</th><th>操作</th></tr></thead>
+            <tbody>
+              <tr><td class="cell-primary"><div class="flex items-center gap-sm"><div class="avatar" style="width:32px;height:32px;font-size:12px;background:var(--accent);">陈</div><div><div>陈总</div><div class="text-xs text-muted">chen@company.com</div></div></div></td><td><span class="tag tag-freeze">管理员</span></td><td>全部</td><td>8</td><td>5</td><td>2025-01-15</td><td><span class="tag tag-success">在职</span></td><td><a href="#" class="text-sm">编辑</a></td></tr>
+              <tr><td class="cell-primary"><div class="flex items-center gap-sm"><div class="avatar" style="width:32px;height:32px;font-size:12px;background:var(--bronze);">陈</div><div><div>陈设计</div><div class="text-xs text-muted">chen@company.com</div></div></div></td><td><span class="tag tag-accent">首席设计师</span></td><td>4</td><td>3</td><td>2</td><td>2025-03-01</td><td><span class="tag tag-success">在职</span></td><td><a href="#" class="text-sm">编辑</a></td></tr>
+              <tr><td class="cell-primary"><div class="flex items-center gap-sm"><div class="avatar" style="width:32px;height:32px;font-size:12px;background:var(--info);">张</div><div><div>张设计</div><div class="text-xs text-muted">zhang@company.com</div></div></div></td><td><span class="tag tag-accent">设计师</span></td><td>3</td><td>2</td><td>1</td><td>2025-06-15</td><td><span class="tag tag-success">在职</span></td><td><a href="#" class="text-sm">编辑</a></td></tr>
+              <tr><td class="cell-primary"><div class="flex items-center gap-sm"><div class="avatar" style="width:32px;height:32px;font-size:12px;background:var(--warning);">王</div><div><div>王设计</div><div class="text-xs text-muted">wang@company.com</div></div></div></td><td><span class="tag tag-accent">设计师</span></td><td>2</td><td>2</td><td>1</td><td>2025-09-01</td><td><span class="tag tag-success">在职</span></td><td><a href="#" class="text-sm">编辑</a></td></tr>
+              <tr><td class="cell-primary"><div class="flex items-center gap-sm"><div class="avatar" style="width:32px;height:32px;font-size:12px;background:var(--muted);">李</div><div><div>李助理</div><div class="text-xs text-muted">li@company.com</div></div></div></td><td><span class="tag tag-muted">助理</span></td><td>全部</td><td>-</td><td>-</td><td>2026-01-10</td><td><span class="tag tag-success">在职</span></td><td><a href="#" class="text-sm">编辑</a></td></tr>
+              <tr><td class="cell-primary"><div class="flex items-center gap-sm"><div class="avatar" style="width:32px;height:32px;font-size:12px;background:var(--freeze);">赵</div><div><div>赵监理</div><div class="text-xs text-muted">zhao@company.com</div></div></div></td><td><span class="tag tag-bronze">施工对接</span></td><td>3</td><td>1</td><td>1</td><td>2025-04-20</td><td><span class="tag tag-success">在职</span></td><td><a href="#" class="text-sm">编辑</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card mt-lg">
+        <div class="card-title" style="margin-bottom:16px;">角色权限说明</div>
+        <div class="grid grid-3">
+          <div style="padding:16px;background:var(--freeze-light);border-radius:8px;">
+            <div class="text-sm font-semibold mb-sm" style="color:var(--freeze);">管理员</div>
+            <div class="text-xs text-muted" style="line-height:1.8;">全部项目查看与管理 · 团队成员管理 · 系统设置 · 计费订阅 · 数据统计 · 材料库管理</div>
+          </div>
+          <div style="padding:16px;background:var(--accent-light);border-radius:8px;">
+            <div class="text-sm font-semibold mb-sm" style="color:var(--accent);">设计师</div>
+            <div class="text-xs text-muted" style="line-height:1.8;">创建和操作项目 · 方案设计与调整 · 渲染迭代 · 客户沟通 · 材料选择 · 交付导出</div>
+          </div>
+          <div style="padding:16px;background:var(--bronze-light);border-radius:8px;">
+            <div class="text-sm font-semibold mb-sm" style="color:var(--bronze);">客户（只读）</div>
+            <div class="text-xs text-muted" style="line-height:1.8;">查看被分享的方案 · 提交反馈 · 确认冻结点 · 查看交付物 · 不可查看成本和内部备注</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="js/common.js"></script>
+</body>
+</html>

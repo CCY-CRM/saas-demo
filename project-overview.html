@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目概览 · 静安府</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="css/common.css">
+<style>
+  .project-header {
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 24px;
+  }
+  .project-title-row {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  .project-title {
+    font-size: 20px; font-weight: 700; margin-bottom: 4px;
+  }
+  .project-sub {
+    font-size: 13px; color: var(--muted);
+  }
+  .file-tree {
+    font-size: 13px;
+  }
+  .file-tree-item {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 8px; border-radius: 4px; cursor: pointer;
+    color: var(--ink-soft);
+  }
+  .file-tree-item:hover { background: var(--line-soft); }
+  .file-tree-folder {
+    font-weight: 500; color: var(--ink);
+  }
+  .file-tree-children {
+    padding-left: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo">AI Design Studio</div>
+      <div class="sub">INTERIOR · AI WORKFLOW</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <a href="index.html" class="nav-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          工作台
+        </a>
+        <a href="projects.html" class="nav-item active">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          项目中心
+        </a>
+        <a href="knowledge.html" class="nav-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          工具箱
+        </a>
+        <a href="materials.html" class="nav-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          材料库
+        </a>
+      </div>
+      <div class="nav-section">
+        <div class="nav-section-title">管理</div>
+        <a href="team.html" class="nav-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          团队
+        </a>
+        <a href="settings.html" class="nav-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          设置
+        </a>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="avatar">陈</div>
+      <div class="user-info">
+        <div class="user-name">陈设计</div>
+        <div class="user-role">首席设计师</div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main-wrapper">
+    <header class="topbar">
+      <div class="topbar-title">项目概览</div>
+      <div class="topbar-breadcrumb"><a href="projects.html">项目中心</a> / 静安府</div>
+      <div class="topbar-actions">
+        <button class="icon-btn">🔗</button>
+        <button class="btn btn-secondary btn-sm">分享给客户</button>
+        <button class="btn btn-primary btn-sm">导出项目</button>
+      </div>
+    </header>
+
+    <!-- 项目头部信息 -->
+    <div class="project-header">
+      <div class="project-title-row">
+        <div>
+          <div class="project-title">静安府 · 120㎡ 现代简约 <span class="tag tag-bronze" style="margin-left:8px;">渲染迭代中</span></div>
+          <div class="project-sub">王先生 · 上海市静安区 · 3室2厅 · 120㎡ · 预算 30万</div>
+        </div>
+        <div class="flex gap-sm">
+          <div class="avatar" style="width:36px;height:36px;font-size:13px;background:var(--accent);">陈</div>
+          <div class="avatar" style="width:36px;height:36px;font-size:13px;background:var(--bronze);">张</div>
+        </div>
+      </div>
+
+      <!-- 6阶段进度条 -->
+      <div class="stage-progress" style="padding:0;margin-top:8px;">
+        <a href="stage-1-modeling.html" class="stage-step done">
+          <div class="stage-dot">✓</div>
+          <span class="stage-label">建模</span>
+        </a>
+        <a href="stage-2-interview.html" class="stage-step done">
+          <div class="stage-dot">✓</div>
+          <span class="stage-label">需求访谈</span>
+        </a>
+        <a href="stage-3-layout.html" class="stage-step done freeze-point">
+          <div class="stage-dot">✓</div>
+          <span class="stage-label">布局方案</span>
+        </a>
+        <a href="stage-4-style.html" class="stage-step done">
+          <div class="stage-dot">✓</div>
+          <span class="stage-label">风格深化</span>
+        </a>
+        <a href="stage-5-rendering.html" class="stage-step active freeze-point">
+          <div class="stage-dot">5</div>
+          <span class="stage-label">渲染迭代</span>
+        </a>
+        <a href="stage-6-delivery.html" class="stage-step">
+          <div class="stage-dot">6</div>
+          <span class="stage-label">交付归档</span>
+        </a>
+      </div>
+    </div>
+
+    <main class="content">
+      <div class="grid" style="grid-template-columns:1fr 1.5fr 1fr;gap:20px;">
+        <!-- 左侧：项目信息 -->
+        <div class="flex flex-col gap-md">
+          <div class="card">
+            <div class="card-title" style="margin-bottom:14px;">项目信息</div>
+            <div class="flex flex-col gap-sm">
+              <div class="flex justify-between text-sm"><span class="text-muted">项目编号</span><span class="font-semibold">PRJ-2026-008</span></div>
+              <div class="flex justify-between text-sm"><span class="text-muted">创建时间</span><span>2026-08-15</span></div>
+              <div class="flex justify-between text-sm"><span class="text-muted">预计完成</span><span>2026-09-30</span></div>
+              <div class="flex justify-between text-sm"><span class="text-muted">已用天数</span><span>25 天</span></div>
+              <div class="flex justify-between text-sm"><span class="text-muted">当前版本</span><span class="tag tag-accent">V2.1</span></div>
+              <div class="flex justify-between text-sm"><span class="text-muted">渲染次数</span><span>18 次</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="margin-bottom:14px;">项目团队</div>
+            <div class="flex flex-col gap-sm">
+              <div class="flex items-center gap-sm">
+                <div class="avatar" style="width:32px;height:32px;font-size:12px;background:var(--accent);">陈</div>
+                <div style="flex:1;"><div class="text-sm font-semibold">陈设计</div><div class="text-xs text-muted">项目负责人</div></div>
+              </div>
+              <div class="flex items-center gap-sm">
+                <div class="avatar" style="width:32px;height:32px;font-size:12px;background:var(--bronze);">张</div>
+                <div style="flex:1;"><div class="text-sm font-semibold">张设计</div><div class="text-xs text-muted">协作设计师</div></div>
+              </div>
+              <div class="flex items-center gap-sm">
+                <div class="avatar" style="width:32px;height:32px;font-size:12px;background:var(--info);">王</div>
+                <div style="flex:1;"><div class="text-sm font-semibold">王监理</div><div class="text-xs text-muted">施工对接</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 中间：当前阶段 + 动态 -->
+        <div class="flex flex-col gap-md">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-title">当前阶段：渲染迭代</div>
+                <div class="card-subtitle">V2.1 方案已生成，等待客户确认</div>
+              </div>
+              <a href="stage-5-rendering.html" class="btn btn-primary btn-sm">进入阶段 →</a>
+            </div>
+            <div style="background:var(--bg);border-radius:8px;padding:16px;margin-bottom:14px;">
+              <div class="flex items-center gap-md mb-md">
+                <div style="width:80px;height:60px;background:linear-gradient(135deg,#E8F0ED,#D4E5DD);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:24px;">🏠</div>
+                <div style="flex:1;">
+                  <div class="text-sm font-semibold">V2.1 客厅渲染图</div>
+                  <div class="text-xs text-muted">根据客户反馈调整了沙发颜色和灯光亮度</div>
+                </div>
+                <span class="tag tag-warning">待确认</span>
+              </div>
+              <div class="progress"><div class="progress-bar" style="width:75%;"></div></div>
+              <div class="flex justify-between text-xs text-muted mt-sm"><span>整体进度 75%</span><span>预计还需 5 天</span></div>
+            </div>
+            <div class="text-sm text-muted">最近修改：调整客厅沙发颜色为米灰色、增加主灯亮度至 80%、更换餐厅吊灯款式</div>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="margin-bottom:14px;">项目动态</div>
+            <div class="flex flex-col gap-sm">
+              <div class="flex gap-sm" style="padding:8px 0;border-bottom:1px solid var(--line-soft);">
+                <div class="avatar" style="width:28px;height:28px;font-size:11px;background:var(--freeze);flex-shrink:0;">客</div>
+                <div>
+                  <div class="text-sm"><strong>客户王先生</strong> 提交了 V2 方案的反馈：客厅沙发颜色偏深，希望浅一些</div>
+                  <div class="text-xs text-muted">10 分钟前</div>
+                </div>
+              </div>
+              <div class="flex gap-sm" style="padding:8px 0;border-bottom:1px solid var(--line-soft);">
+                <div class="avatar" style="width:28px;height:28px;font-size:11px;background:var(--accent);flex-shrink:0;">陈</div>
+                <div>
+                  <div class="text-sm"><strong>陈设计</strong> 应用了修改并重新渲染，生成 V2.1 版本</div>
+                  <div class="text-xs text-muted">5 分钟前</div>
+                </div>
+              </div>
+              <div class="flex gap-sm" style="padding:8px 0;border-bottom:1px solid var(--line-soft);">
+                <div class="avatar" style="width:28px;height:28px;font-size:11px;background:var(--info);flex-shrink:0;">系</div>
+                <div>
+                  <div class="text-sm"><strong>系统</strong> 自动识别修改意图：替换类 - 沙发颜色，推荐了 3 款米灰色沙发</div>
+                  <div class="text-xs text-muted">8 分钟前</div>
+                </div>
+              </div>
+              <div class="flex gap-sm" style="padding:8px 0;">
+                <div class="avatar" style="width:28px;height:28px;font-size:11px;background:var(--bronze);flex-shrink:0;">张</div>
+                <div>
+                  <div class="text-sm"><strong>张设计</strong> 完成了主卧的软装配置，添加了 2 款床头柜和 1 盏落地灯</div>
+                  <div class="text-xs text-muted">1 小时前</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧：待办 + 文件 -->
+        <div class="flex flex-col gap-md">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">待办事项</div>
+              <span class="tag tag-freeze">3</span>
+            </div>
+            <div class="flex flex-col gap-sm">
+              <div class="flex items-start gap-sm" style="padding:8px 0;border-bottom:1px solid var(--line-soft);">
+                <input type="checkbox" style="margin-top:3px;">
+                <div style="flex:1;">
+                  <div class="text-sm font-semibold" style="color:var(--freeze);">催促客户确认 V2.1 方案</div>
+                  <div class="text-xs text-muted">已等待 2 天</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-sm" style="padding:8px 0;border-bottom:1px solid var(--line-soft);">
+                <input type="checkbox" style="margin-top:3px;">
+                <div style="flex:1;">
+                  <div class="text-sm font-semibold">完成厨房橱柜材料选型</div>
+                  <div class="text-xs text-muted">风格深化阶段</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-sm" style="padding:8px 0;">
+                <input type="checkbox" style="margin-top:3px;">
+                <div style="flex:1;">
+                  <div class="text-sm font-semibold">预约客户线下看样</div>
+                  <div class="text-xs text-muted">材料确认</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title" style="margin-bottom:10px;">项目文件</div>
+            <div class="file-tree">
+              <div class="file-tree-item file-tree-folder">📁 建筑模型</div>
+              <div class="file-tree-children">
+                <div class="file-tree-item">📄 建筑模型_冻结版.skp</div>
+                <div class="file-tree-item">📄 户型图_原始.pdf</div>
+              </div>
+              <div class="file-tree-item file-tree-folder" style="margin-top:4px;">📁 设计方案</div>
+              <div class="file-tree-children">
+                <div class="file-tree-item">📄 需求模型.json</div>
+                <div class="file-tree-item">📄 布局方案_A/B/C.pdf</div>
+                <div class="file-tree-item">📄 材料清单_V2.1.xlsx</div>
+              </div>
+              <div class="file-tree-item file-tree-folder" style="margin-top:4px;">📁 渲染图</div>
+              <div class="file-tree-children">
+                <div class="file-tree-item">📄 V1_客厅.jpg</div>
+                <div class="file-tree-item">📄 V2_全屋_8张.zip</div>
+                <div class="file-tree-item">📄 V2.1_客厅.jpg</div>
+              </div>
+              <div class="file-tree-item file-tree-folder" style="margin-top:4px;">📁 合同文档</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<script src="js/common.js"></script>
+</body>
+</html>

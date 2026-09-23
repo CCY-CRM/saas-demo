@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>材料库 · AI 室内设计平台</title>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<link rel="stylesheet" href="css/common.css">
+<style>
+  .cat-tree { width:200px; flex-shrink:0; border-right:1px solid var(--line); background:var(--card); overflow-y:auto; }
+  .cat-item { padding:8px 16px; font-size:13px; cursor:pointer; border-left:3px solid transparent; display:flex; align-items:center; justify-content:space-between; }
+  .cat-item:hover { background:var(--line-soft); }
+  .cat-item.active { background:var(--accent-light); border-left-color:var(--accent); color:var(--accent); font-weight:600; }
+  .cat-count { font-size:10px; color:var(--muted); }
+  .material-list { flex:1; min-width:0; padding:16px; }
+  .material-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px; }
+  .mat-card { background:var(--card); border:1px solid var(--line); border-radius:8px; overflow:hidden; cursor:pointer; transition:all 0.15s; }
+  .mat-card:hover { box-shadow:var(--shadow-md); border-color:var(--accent); }
+  .mat-swatch { height:100px; display:flex; align-items:center; justify-content:center; font-size:28px; }
+  .mat-info { padding:10px 12px; }
+  .mat-name { font-size:12px; font-weight:600; margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .mat-brand { font-size:10px; color:var(--muted); }
+  .mat-price { font-size:12px; color:var(--bronze); font-weight:600; margin-top:4px; }
+  .detail-panel { width:300px; border-left:1px solid var(--line); background:var(--card); padding:20px; overflow-y:auto; }
+</style>
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar" style="width:60px;">
+    <div class="sidebar-brand" style="padding:16px 0;text-align:center;"><div class="logo" style="font-size:20px;">A</div></div>
+    <nav class="sidebar-nav"><div class="nav-section" style="padding:0 8px;">
+      <a href="index.html" class="nav-item" style="justify-content:center;padding:10px;">🏠</a>
+      <a href="projects.html" class="nav-item" style="justify-content:center;padding:10px;">📋</a>
+      <a href="knowledge.html" class="nav-item" style="justify-content:center;padding:10px;">📚</a>
+      <a href="materials.html" class="nav-item active" style="justify-content:center;padding:10px;">🧱</a>
+    </div></nav>
+  </aside>
+  <div class="main-wrapper" style="margin-left:60px;">
+    <header class="topbar">
+      <div class="topbar-title">材料库</div>
+      <div class="topbar-breadcrumb">共 1,286 种材料 · 12 个分类</div>
+      <div class="topbar-actions">
+        <div class="topbar-search"><span class="search-icon">⌕</span><input type="text" placeholder="搜索材料名称、品牌..."></div>
+        <button class="btn btn-secondary btn-sm">批量导入</button>
+        <button class="btn btn-primary btn-sm">+ 添加材料</button>
+      </div>
+    </header>
+    <div style="display:flex; height:calc(100vh - 56px);">
+      <div class="cat-tree">
+        <div style="padding:12px 16px; border-bottom:1px solid var(--line); font-size:11px; font-weight:600; color:var(--muted);">材料分类</div>
+        <div class="cat-item active">🧱 瓷砖 <span class="cat-count">186</span></div>
+        <div class="cat-item">🪵 地板 <span class="cat-count">142</span></div>
+        <div class="cat-item">🎨 涂料 <span class="cat-count">98</span></div>
+        <div class="cat-item">🪨 石材 <span class="cat-count">76</span></div>
+        <div class="cat-item">🚪 门窗 <span class="cat-count">124</span></div>
+        <div class="cat-item">💡 灯具 <span class="cat-count">156</span></div>
+        <div class="cat-item">🚿 洁具 <span class="cat-count">88</span></div>
+        <div class="cat-item">🔧 五金 <span class="cat-count">210</span></div>
+        <div class="cat-item">🪑 家具 <span class="cat-count">168</span></div>
+        <div class="cat-item">🛋️ 软装 <span class="cat-count">38</span></div>
+      </div>
+      <div class="material-list">
+        <div class="flex items-center justify-between mb-md">
+          <span class="text-sm text-muted">瓷砖 · <strong style="color:var(--ink);">186</strong> 种</span>
+          <div class="flex gap-sm">
+            <select class="form-select" style="width:auto;padding:6px 10px;font-size:11px;"><option>全部品牌</option><option>马可波罗</option><option>东鹏</option><option>诺贝尔</option></select>
+            <select class="form-select" style="width:auto;padding:6px 10px;font-size:11px;"><option>价格从低到高</option><option>价格从高到低</option><option>最新添加</option></select>
+          </div>
+        </div>
+        <div class="material-grid">
+          <div class="mat-card"><div class="mat-swatch" style="background:linear-gradient(135deg,#F5F0E8,#E8E0D0);">🧱</div><div class="mat-info"><div class="mat-name">米白色抛光砖</div><div class="mat-brand">马可波罗 · 800×800mm</div><div class="mat-price">¥128/片</div></div></div>
+          <div class="mat-card"><div class="mat-swatch" style="background:linear-gradient(135deg,#D4C4B0,#B8A890);">🧱</div><div class="mat-info"><div class="mat-name">原木纹仿古砖</div><div class="mat-brand">东鹏 · 600×1200mm</div><div class="mat-price">¥168/片</div></div></div>
+          <div class="mat-card"><div class="mat-swatch" style="background:linear-gradient(135deg,#E8E8E8,#D0D0D0);">🧱</div><div class="mat-info"><div class="mat-name">灰色大理石纹砖</div><div class="mat-brand">诺贝尔 · 750×1500mm</div><div class="mat-price">¥298/片</div></div></div>
+          <div class="mat-card"><div class="mat-swatch" style="background:linear-gradient(135deg,#F0E8DC,#E0D4C0);">🧱</div><div class="mat-info"><div class="mat-name">奶油色柔光砖</div><div class="mat-brand">蒙娜丽莎 · 800×800mm</div><div class="mat-price">¥158/片</div></div></div>
+          <div class="mat-card"><div class="mat-swatch" style="background:linear-gradient(135deg,#C8C0B4,#A8A094);">🧱</div><div class="mat-info"><div class="mat-name">水泥灰工业砖</div><div class="mat-brand">冠珠 · 600×600mm</div><div class="mat-price">¥88/片</div></div></div>
+          <div class="mat-card"><div class="mat-swatch" style="background:linear-gradient(135deg,#F8F4EC,#EEE8DA);">🧱</div><div class="mat-info"><div class="mat-name">白色微晶砖</div><div class="mat-brand">欧神诺 · 800×800mm</div><div class="mat-price">¥198/片</div></div></div>
+          <div class="mat-card"><div class="mat-swatch" style="background:linear-gradient(135deg,#E0D8CC,#C8BFB0);">🧱</div><div class="mat-info"><div class="mat-name">米色仿古砖</div><div class="mat-brand">金意陶 · 600×1200mm</div><div class="mat-price">¥178/片</div></div></div>
+          <div class="mat-card"><div class="mat-swatch" style="background:linear-gradient(135deg,#D8D0C4,#BCB4A4);">🧱</div><div class="mat-info"><div class="mat-name">咖色木纹砖</div><div class="mat-brand">马可波罗 · 200×1200mm</div><div class="mat-price">¥68/片</div></div></div>
+        </div>
+      </div>
+      <div class="detail-panel">
+        <div style="width:100%;height:140px;background:linear-gradient(135deg,#F5F0E8,#E8E0D0);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:40px;margin-bottom:16px;">🧱</div>
+        <div class="text-lg font-semibold mb-sm">米白色抛光砖</div>
+        <div class="text-sm text-muted mb-md">马可波罗 · CH8218</div>
+        <div class="flex items-center justify-between mb-md" style="padding:12px;background:var(--bronze-light);border-radius:6px;">
+          <span class="text-sm">参考单价</span>
+          <span class="text-xl font-bold" style="color:var(--bronze);">¥128/片</span>
+        </div>
+        <div class="text-xs font-semibold mb-sm" style="color:var(--accent);">规格参数</div>
+        <div class="flex flex-col gap-sm mb-md" style="font-size:12px;">
+          <div class="flex justify-between"><span class="text-muted">尺寸</span><span>800×800mm</span></div>
+          <div class="flex justify-between"><span class="text-muted">厚度</span><span>10mm</span></div>
+          <div class="flex justify-between"><span class="text-muted">适用空间</span><span>客厅/卧室</span></div>
+          <div class="flex justify-between"><span class="text-muted">表面工艺</span><span>抛光</span></div>
+          <div class="flex justify-between"><span class="text-muted">吸水率</span><span>≤0.5%</span></div>
+        </div>
+        <div class="text-xs font-semibold mb-sm" style="color:var(--accent);">供应商</div>
+        <div class="text-sm mb-md">上海马可波罗总代理<br><span class="text-xs text-muted">库存充足 · 3天内发货</span></div>
+        <button class="btn btn-primary w-full mb-sm">编辑材料</button>
+        <button class="btn btn-secondary w-full">关联到项目</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/common.js"></script>
+</body>
+</html>
