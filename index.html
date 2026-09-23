@@ -3,299 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>工作台 · AI 室内设计平台</title>
+<title>登录 · AI 室内设计平台</title>
 <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
 <link rel="stylesheet" href="css/common.css">
+<style>
+  body { background: var(--sidebar-bg); overflow: hidden; }
+  .login-wrap {
+    display: flex; min-height: 100vh;
+  }
+  .login-left {
+    flex: 1.2;
+    background: linear-gradient(135deg, #1E2A26 0%, #2D5A4E 100%);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .login-left::before {
+    content: ''; position: absolute; top: -100px; right: -100px;
+    width: 400px; height: 400px; border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .login-left::after {
+    content: ''; position: absolute; bottom: -80px; left: -80px;
+    width: 300px; height: 300px; border: 1px solid rgba(184,149,106,0.15);
+    border-radius: 50%;
+  }
+  .login-brand {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 28px; font-weight: 700; color: #fff;
+    margin-bottom: 8px; position: relative; z-index: 1;
+  }
+  .login-brand-sub {
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    letter-spacing: 2px; margin-bottom: 48px; position: relative; z-index: 1;
+  }
+  .login-slogan {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 36px; font-weight: 600; color: #fff;
+    line-height: 1.4; margin-bottom: 20px; position: relative; z-index: 1;
+  }
+  .login-slogan span { color: var(--bronze); }
+  .login-desc {
+    font-size: 14px; color: rgba(255,255,255,0.6);
+    line-height: 1.8; max-width: 400px; position: relative; z-index: 1;
+  }
+  .login-features {
+    display: flex; gap: 32px; margin-top: 48px; position: relative; z-index: 1;
+  }
+  .login-feature {
+    color: rgba(255,255,255,0.7); font-size: 12px;
+  }
+  .login-feature .num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 24px; font-weight: 700; color: var(--bronze);
+    display: block; margin-bottom: 4px;
+  }
+  .login-right {
+    flex: 1;
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px;
+  }
+  .login-card {
+    width: 100%; max-width: 380px;
+  }
+  .login-card h2 {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 24px; font-weight: 700; margin-bottom: 8px;
+  }
+  .login-card .sub {
+    font-size: 13px; color: var(--muted); margin-bottom: 32px;
+  }
+  .demo-account {
+    background: var(--accent-light);
+    border: 1px solid rgba(45,90,78,0.2);
+    border-radius: var(--r-sm);
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: var(--accent);
+    line-height: 1.7;
+  }
+  .demo-account strong { font-weight: 600; }
+  @media (max-width: 900px) {
+    .login-left { display: none; }
+  }
+</style>
 </head>
 <body>
-<div class="app-layout">
-  <!-- 侧边栏 -->
-  <aside class="sidebar">
-    <div class="sidebar-brand">
-      <div class="logo">AI Design Studio</div>
-      <div class="sub">INTERIOR · AI WORKFLOW</div>
+<div class="login-wrap">
+  <div class="login-left">
+    <div class="login-brand">AI Design Studio</div>
+    <div class="login-brand-sub">INTERIOR DESIGN · AI WORKFLOW</div>
+    <h1 class="login-slogan">从项目创建到<br><span>知识反哺</span>的<br>全流程设计管线</h1>
+    <p class="login-desc">AI 驱动的室内设计协同平台，覆盖建模、需求访谈、布局生成、风格匹配、渲染迭代到交付归档的完整工作流。</p>
+    <div class="login-features">
+      <div class="login-feature"><span class="num">6</span>核心阶段</div>
+      <div class="login-feature"><span class="num">5</span>冻结确认点</div>
+      <div class="login-feature"><span class="num">∞</span>知识闭环</div>
     </div>
-    <nav class="sidebar-nav">
-      <div class="nav-section">
-        <a href="index.html" class="nav-item active">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          工作台
-        </a>
-        <a href="projects.html" class="nav-item">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-          项目中心
-          <span class="badge">8</span>
-        </a>
-        <a href="knowledge.html" class="nav-item">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          工具箱
-        </a>
-        <a href="materials.html" class="nav-item">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          材料库
-        </a>
+  </div>
+  <div class="login-right">
+    <div class="login-card">
+      <h2>欢迎回来</h2>
+      <p class="sub">登录以继续您的设计项目</p>
+      <div class="demo-account">
+        <strong>演示账号</strong><br>
+        设计师：designer@demo.com / 123456<br>
+        管理员：admin@demo.com / 123456
       </div>
-      <div class="nav-section">
-        <div class="nav-section-title">管理</div>
-        <a href="team.html" class="nav-item">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          团队
-        </a>
-        <a href="settings.html" class="nav-item">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          设置
-        </a>
+      <div class="form-group">
+        <label class="form-label">邮箱</label>
+        <input type="email" class="form-input" value="designer@demo.com" placeholder="请输入邮箱">
       </div>
-    </nav>
-    <div class="sidebar-footer">
-      <div class="avatar">陈</div>
-      <div class="user-info">
-        <div class="user-name">陈设计</div>
-        <div class="user-role">首席设计师</div>
+      <div class="form-group">
+        <label class="form-label">密码</label>
+        <input type="password" class="form-input" value="123456" placeholder="请输入密码">
       </div>
+      <div class="flex items-center justify-between mb-md">
+        <label class="flex items-center gap-sm text-sm" style="cursor:pointer;">
+          <input type="checkbox" checked> 记住我
+        </label>
+        <a href="#" class="text-sm">忘记密码？</a>
+      </div>
+      <a href="dashboard.html" class="btn btn-primary w-full" style="justify-content:center; padding:10px;">登 录</a>
+      <p class="text-center text-sm text-muted mt-md">
+        还没有账号？<a href="#">申请试用</a>
+      </p>
     </div>
-  </aside>
-
-  <!-- 主内容 -->
-  <div class="main-wrapper">
-    <header class="topbar">
-      <div class="topbar-title">工作台</div>
-      <div class="topbar-actions">
-        <div class="topbar-search">
-          <span class="search-icon">⌕</span>
-          <input type="text" placeholder="搜索项目、客户、材料...">
-        </div>
-        <button class="icon-btn"><span class="dot"></span>🔔</button>
-        <a href="project-new.html" class="btn btn-primary btn-sm">+ 新建项目</a>
-      </div>
-    </header>
-
-    <main class="content">
-      <!-- 欢迎语 -->
-      <div class="mb-lg">
-        <h1 style="font-size:22px;font-weight:600;margin-bottom:4px;">下午好，陈设计 👋</h1>
-        <p class="text-muted text-sm">今天有 3 个项目待处理，2 个客户反馈待回复</p>
-      </div>
-
-      <!-- 统计卡片 -->
-      <div class="grid grid-4 mb-lg">
-        <div class="stat-card">
-          <div class="stat-icon" style="background:var(--accent-light);color:var(--accent);">📋</div>
-          <div class="stat-label">进行中项目</div>
-          <div class="stat-value">8</div>
-          <div class="stat-change" style="color:var(--success);">↑ 本月新增 3 个</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon" style="background:var(--bronze-light);color:var(--bronze);">✓</div>
-          <div class="stat-label">本月完成</div>
-          <div class="stat-value">5</div>
-          <div class="stat-change" style="color:var(--success);">↑ 较上月 +2</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon" style="background:var(--info-light);color:var(--info);">🎨</div>
-          <div class="stat-label">累计渲染次数</div>
-          <div class="stat-value">247</div>
-          <div class="stat-change" style="color:var(--muted);">本周 38 次</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon" style="background:var(--success-light);color:var(--success);">📚</div>
-          <div class="stat-label">工具箱案例</div>
-          <div class="stat-value">156</div>
-          <div class="stat-change" style="color:var(--success);">↑ 本月归档 5 个</div>
-        </div>
-      </div>
-
-      <div class="grid grid-3" style="grid-template-columns:2fr 1fr;">
-        <!-- 项目进度概览 -->
-        <div class="card">
-          <div class="card-header">
-            <div>
-              <div class="card-title">进行中项目</div>
-              <div class="card-subtitle">按更新时间排序</div>
-            </div>
-            <a href="projects.html" class="btn btn-ghost btn-sm">查看全部 →</a>
-          </div>
-          <div class="table-wrap">
-            <table class="data-table">
-              <thead>
-                <tr><th>项目名称</th><th>客户</th><th>当前阶段</th><th>进度</th><th>负责人</th><th>更新时间</th></tr>
-              </thead>
-              <tbody>
-                <tr style="cursor:pointer;" onclick="location.href='project-overview.html'">
-                  <td class="cell-primary">静安府 · 120㎡ 现代简约</td>
-                  <td>王先生</td>
-                  <td><span class="tag tag-bronze">渲染迭代</span></td>
-                  <td style="width:120px;"><div class="progress"><div class="progress-bar" style="width:75%;"></div></div><span class="text-xs text-muted">75%</span></td>
-                  <td>陈设计</td>
-                  <td class="text-muted text-sm">10 分钟前</td>
-                </tr>
-                <tr style="cursor:pointer;">
-                  <td class="cell-primary">徐汇滨江 · 89㎡ 日式原木</td>
-                  <td>李女士</td>
-                  <td><span class="tag tag-accent">布局设计</span></td>
-                  <td style="width:120px;"><div class="progress"><div class="progress-bar bronze" style="width:45%;"></div></div><span class="text-xs text-muted">45%</span></td>
-                  <td>张设计</td>
-                  <td class="text-muted text-sm">2 小时前</td>
-                </tr>
-                <tr style="cursor:pointer;">
-                  <td class="cell-primary">浦东世纪公园 · 200㎡ 轻奢</td>
-                  <td>陈总</td>
-                  <td><span class="tag tag-info">需求访谈</span></td>
-                  <td style="width:120px;"><div class="progress"><div class="progress-bar" style="width:25%;"></div></div><span class="text-xs text-muted">25%</span></td>
-                  <td>陈设计</td>
-                  <td class="text-muted text-sm">昨天</td>
-                </tr>
-                <tr style="cursor:pointer;">
-                  <td class="cell-primary">闵行古美 · 75㎡ 北欧</td>
-                  <td>赵小姐</td>
-                  <td><span class="tag tag-warning">待客户确认</span></td>
-                  <td style="width:120px;"><div class="progress"><div class="progress-bar freeze" style="width:60%;"></div></div><span class="text-xs text-muted">60%</span></td>
-                  <td>王设计</td>
-                  <td class="text-muted text-sm">昨天</td>
-                </tr>
-                <tr style="cursor:pointer;">
-                  <td class="cell-primary">长宁中山公园 · 150㎡ 新中式</td>
-                  <td>刘先生</td>
-                  <td><span class="tag tag-muted">建模中</span></td>
-                  <td style="width:120px;"><div class="progress"><div class="progress-bar" style="width:10%;"></div></div><span class="text-xs text-muted">10%</span></td>
-                  <td>张设计</td>
-                  <td class="text-muted text-sm">2 天前</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- 右侧：待办 + 动态 -->
-        <div class="flex flex-col gap-md">
-          <!-- 待办 -->
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">待办提醒</div>
-              <span class="tag tag-freeze">5</span>
-            </div>
-            <div class="flex flex-col gap-sm">
-              <div class="flex items-center gap-sm" style="padding:8px 0;border-bottom:1px solid var(--line-soft);">
-                <span style="color:var(--freeze);">●</span>
-                <div style="flex:1;min-width:0;">
-                  <div class="text-sm font-semibold">静安府项目待客户确认 V2 方案</div>
-                  <div class="text-xs text-muted">渲染迭代 · 已等待 2 天</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-sm" style="padding:8px 0;border-bottom:1px solid var(--line-soft);">
-                <span style="color:var(--warning);">●</span>
-                <div style="flex:1;min-width:0;">
-                  <div class="text-sm font-semibold">徐汇滨江项目布局方案需设计师调整</div>
-                  <div class="text-xs text-muted">布局设计 · AI 已生成 A/B/C</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-sm" style="padding:8px 0;border-bottom:1px solid var(--line-soft);">
-                <span style="color:var(--accent);">●</span>
-                <div style="flex:1;min-width:0;">
-                  <div class="text-sm font-semibold">浦东世纪公园项目需求访谈待完成</div>
-                  <div class="text-xs text-muted">需求访谈 · 完整度 60%</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-sm" style="padding:8px 0;">
-                <span style="color:var(--bronze);">●</span>
-                <div style="flex:1;min-width:0;">
-                  <div class="text-sm font-semibold">材料库新增 12 款瓷砖待审核</div>
-                  <div class="text-xs text-muted">材料库 · 管理员操作</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 团队动态 -->
-          <div class="card">
-            <div class="card-title" style="margin-bottom:12px;">团队动态</div>
-            <div class="flex flex-col gap-sm">
-              <div class="flex gap-sm" style="padding:6px 0;">
-                <div class="avatar" style="width:28px;height:28px;font-size:11px;background:var(--accent);flex-shrink:0;">张</div>
-                <div>
-                  <div class="text-sm"><strong>张设计</strong> 完成了徐汇滨江项目的建筑模型冻结</div>
-                  <div class="text-xs text-muted">15 分钟前</div>
-                </div>
-              </div>
-              <div class="flex gap-sm" style="padding:6px 0;">
-                <div class="avatar" style="width:28px;height:28px;font-size:11px;background:var(--bronze);flex-shrink:0;">王</div>
-                <div>
-                  <div class="text-sm"><strong>王设计</strong> 提交了闵行古美项目的首轮汇报材料</div>
-                  <div class="text-xs text-muted">1 小时前</div>
-                </div>
-              </div>
-              <div class="flex gap-sm" style="padding:6px 0;">
-                <div class="avatar" style="width:28px;height:28px;font-size:11px;background:var(--info);flex-shrink:0;">系</div>
-                <div>
-                  <div class="text-sm"><strong>系统</strong> 自动归档了「普陀真如」项目，已加入工具箱</div>
-                  <div class="text-xs text-muted">3 小时前</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 月度趋势 -->
-      <div class="card mt-lg">
-        <div class="card-header">
-          <div>
-            <div class="card-title">项目趋势</div>
-            <div class="card-subtitle">近 6 个月项目数量与完成率</div>
-          </div>
-          <div class="flex gap-sm">
-            <button class="btn btn-secondary btn-sm active">月度</button>
-            <button class="btn btn-ghost btn-sm">季度</button>
-            <button class="btn btn-ghost btn-sm">年度</button>
-          </div>
-        </div>
-        <!-- 简单CSS柱状图 -->
-        <div style="display:flex;align-items:flex-end;gap:24px;height:200px;padding:0 20px;border-bottom:1px solid var(--line);">
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <div style="width:100%;background:var(--accent-light);border-radius:4px 4px 0 0;height:80px;position:relative;">
-              <div style="position:absolute;bottom:0;left:0;right:0;background:var(--accent);height:65%;border-radius:4px 4px 0 0;"></div>
-            </div>
-            <span class="text-xs text-muted">4月</span>
-          </div>
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <div style="width:100%;background:var(--accent-light);border-radius:4px 4px 0 0;height:100px;position:relative;">
-              <div style="position:absolute;bottom:0;left:0;right:0;background:var(--accent);height:80%;border-radius:4px 4px 0 0;"></div>
-            </div>
-            <span class="text-xs text-muted">5月</span>
-          </div>
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <div style="width:100%;background:var(--accent-light);border-radius:4px 4px 0 0;height:120px;position:relative;">
-              <div style="position:absolute;bottom:0;left:0;right:0;background:var(--accent);height:75%;border-radius:4px 4px 0 0;"></div>
-            </div>
-            <span class="text-xs text-muted">6月</span>
-          </div>
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <div style="width:100%;background:var(--accent-light);border-radius:4px 4px 0 0;height:140px;position:relative;">
-              <div style="position:absolute;bottom:0;left:0;right:0;background:var(--accent);height:85%;border-radius:4px 4px 0 0;"></div>
-            </div>
-            <span class="text-xs text-muted">7月</span>
-          </div>
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <div style="width:100%;background:var(--accent-light);border-radius:4px 4px 0 0;height:160px;position:relative;">
-              <div style="position:absolute;bottom:0;left:0;right:0;background:var(--accent);height:90%;border-radius:4px 4px 0 0;"></div>
-            </div>
-            <span class="text-xs text-muted">8月</span>
-          </div>
-          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;">
-            <div style="width:100%;background:var(--bronze-light);border-radius:4px 4px 0 0;height:180px;position:relative;">
-              <div style="position:absolute;bottom:0;left:0;right:0;background:var(--bronze);height:75%;border-radius:4px 4px 0 0;"></div>
-            </div>
-            <span class="text-xs text-muted font-semibold">9月</span>
-          </div>
-        </div>
-        <div class="flex justify-between text-xs text-muted mt-sm" style="padding:0 20px;">
-          <span>浅色柱：新增项目数</span>
-          <span>深色柱：完成项目数</span>
-        </div>
-      </div>
-    </main>
   </div>
 </div>
-<script src="js/common.js"></script>
 </body>
 </html>
